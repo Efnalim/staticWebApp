@@ -7,8 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="manifest" href="manifest.json" />
 </head>
 <body>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('./sw.js')
+        .then((registration) => {
+          // Registration was successful
+          console.log(
+            'ServiceWorker registration successful with scope: ',
+            registration.scope
+          );
+        })
+        .catch((err) => {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+    }
+  </script>
   <app-root></app-root>
 </body>
 </html>
