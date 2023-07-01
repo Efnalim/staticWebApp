@@ -17,23 +17,6 @@
   <meta name="theme-color" content="#1976d2">
 </head>
 <body>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('./sw.js')
-        .then((registration) => {
-          // Registration was successful
-          console.log(
-            'ServiceWorker registration successful with scope: ',
-            registration.scope
-          );
-        })
-        .catch((err) => {
-          // registration failed :(
-          console.log('ServiceWorker registration failed: ', err);
-        });
-    }
-  </script>
   <app-root></app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
