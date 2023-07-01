@@ -26,16 +26,15 @@ export class SongsListComponent implements OnInit {
   }
 
   fetchData() {
-    this.songsOp.getAllSongs().subscribe((songs: any[]) => {
-      const mapper = new SongMapper();
-      this.songs = songs.map(song => mapper.mapToDomain(song));
-      console.log(this.songs);
-      
+    this.songsOp.getAllSongs().subscribe((songs: Song[]) => {
+      this.songs = songs;
     });
   }
 
   getNewestDate(song: Song): string {
-    return new Date(Math.max.apply(null, song.records.map(record => record.date.getTime()))).toLocaleDateString();
+    if(song.newestRecordDate)
+      return song.newestRecordDate.toLocaleDateString()
+    return "údaj chybí";
   }
 
 

@@ -9,6 +9,8 @@ export class SongMapper {
         retVal.records = json.records.map((record: any) => {
             return { date: new Date(record.date), performer: record.performerID}
         });
+
+        retVal.newestRecordDate = new Date(Math.max.apply(null, retVal.records.map(record => record.date.getTime())));
         return retVal;
     }
 }
