@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class SongsService {
@@ -7,7 +8,7 @@ export class SongsService {
 
   constructor(private http: HttpClient) {}
 
-  getAllSongs() {
-    return this.http.get<JSON>(`${this.ROOT_URL}`)
+  getAllSongs(): Observable<any[]> {
+    return this.http.get<JSON[]>(`${this.ROOT_URL}`);
   }
 }

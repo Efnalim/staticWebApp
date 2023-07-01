@@ -17,11 +17,5 @@ export class AppComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
   }
-
-
-  click() {
-    this.songsOp.getAllSongs().subscribe(songs => console.log(songs));
-  }
-
   
 }
