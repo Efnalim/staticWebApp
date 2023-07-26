@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "create":"ng g c components/newcomponent",
-    "worker":"ng add @angular/pwa --project app --force"
+    "create": "ng g c components/songs-list/create-song",
+    "worker": "ng add @angular/pwa --project app --force"
   },
   "private": true,
   "dependencies": {
@@ -30,6 +30,7 @@
     "realm-web": "^2.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "tw-elements": "^1.0.0-beta2",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

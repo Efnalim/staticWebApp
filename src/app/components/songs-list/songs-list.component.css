@@ -14,3 +14,12 @@
 .heeding12 {
   color: red;
 }
+
+.example-full-width {
+  width: 45%;
+  margin: 0 2.5%;
+}
+
+::ng-deep .mat-mdc-list-item-unscoped-content {
+  display: flex;
+}
