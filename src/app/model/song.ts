@@ -3,14 +3,14 @@ export class Song {
     constructor() {
         this.id = "";
         this.songName = "";
-        this.songNumber = NaN;
+        this.songNumber = "";
         this.newestRecordDate;
         this.records = [];
     }
 
     id: string;
     songName: string;
-    songNumber: number;
+    songNumber: string;
     newestRecordDate: Date | undefined;
     records: {
         date: Date;
