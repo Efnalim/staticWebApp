@@ -23,3 +23,7 @@
 ::ng-deep .mat-mdc-list-item-unscoped-content {
   display: flex;
 }
+
+mat-list-item:nth-child(even) {
+  background-color: rgb(192, 192, 192);
+}

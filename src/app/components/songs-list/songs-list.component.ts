@@ -14,6 +14,9 @@ import { CreateSongComponent } from './create-song/create-song.component';
 })
 export class SongsListComponent implements OnInit {
   public songs: Song[] = [];
+  public originalSongs: Song[] = [];
+
+  public nameInput: string = ""
 
   constructor(private songsOp: SongsService, public dialog: MatDialog) {}
 
@@ -33,6 +36,7 @@ export class SongsListComponent implements OnInit {
 
   fetchData() {
     this.songsOp.getAllSongs().subscribe((songs: Song[]) => {
+      this.originalSongs = songs;
       this.songs = songs;
     });
   }
@@ -45,5 +49,9 @@ export class SongsListComponent implements OnInit {
 
   isNaN(value: number): boolean {
     return isNaN(value);
+  }
+
+  onNameInputChanged(event$: any) {
+    this.songs = this.originalSongs.filter(s => s.songName.toLowerCase().includes(this.nameInput.toLowerCase()));
   }
 }
