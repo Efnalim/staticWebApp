@@ -6,6 +6,7 @@ import { Song } from 'src/app/model/song';
 import { SongsService } from 'src/app/services/songs.service';
 import 'tw-elements';
 import { CreateSongComponent } from './create-song/create-song.component';
+import { SongDetailComponent } from './song-detail/song-detail.component';
 
 @Component({
   selector: 'songs-list',
@@ -53,5 +54,14 @@ export class SongsListComponent implements OnInit {
 
   onNameInputChanged(event$: any) {
     this.songs = this.originalSongs.filter(s => s.songName.toLowerCase().includes(this.nameInput.toLowerCase()));
+  }
+
+  openDetail(song: Song): void {
+    let dialogRef = this.dialog.open(SongDetailComponent, { width: '100vw' });
+    dialogRef.componentInstance.song = song;
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
   }
 }

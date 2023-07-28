@@ -26,7 +26,8 @@
       <div style="width: 30%;">hráno</div>
     </h3>
     <mat-list role="list">
-      <mat-list-item role="listitem" *ngFor="let song of songs" style="height: unset; padding: unset; display: flex;">
+      <mat-list-item role="listitem" *ngFor="let song of songs" (click)="openDetail(song)"
+        style="height: unset; padding: unset; display: flex;">
         <div style="width: 50%;">{{ song.songName }}</div>
         <div style="width: 20%;">{{ song.songNumber ? "-" : song.songNumber }}</div>
         <div style="width: 30%;">{{ song.newestRecordDate | date:'d.M. YYYY' }}</div>

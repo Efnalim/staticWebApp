@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SongsService } from './services/songs.service';
@@ -20,9 +21,15 @@ import { SongsListComponent } from './components/songs-list/songs-list.component
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { CreateSongComponent } from './components/songs-list/create-song/create-song.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SongDetailComponent } from './components/songs-list/song-detail/song-detail.component';
 
 @NgModule({
-  declarations: [AppComponent, SongsListComponent, CreateSongComponent],
+  declarations: [
+    AppComponent,
+    SongsListComponent,
+    CreateSongComponent,
+    SongDetailComponent,
+  ],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -36,6 +43,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatDividerModule,
     MatDialogModule,
+    MatSlideToggleModule,
     ReactiveFormsModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
