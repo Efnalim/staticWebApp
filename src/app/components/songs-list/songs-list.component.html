@@ -29,8 +29,8 @@
       <mat-list-item role="listitem" *ngFor="let song of songs" (click)="openDetail(song)"
         style="height: unset; padding: unset; display: flex;">
         <div style="width: 50%;">{{ song.songName }}</div>
-        <div style="width: 20%;">{{ song.songNumber ? "-" : song.songNumber }}</div>
-        <div style="width: 30%;">{{ song.newestRecordDate | date:'d.M. YYYY' }}</div>
+        <div style="width: 20%;">{{ (!song.songNumber) ? "-" : song.songNumber }}</div>
+        <div style="width: 30%;">{{ (song.newestRecordDate !== undefined) ? (song.newestRecordDate | date:'d.M. YYYY') : "" }}</div>
       </mat-list-item>
     </mat-list>
   </mat-card-content>

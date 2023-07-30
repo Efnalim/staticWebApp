@@ -4,7 +4,6 @@ import {
 } from '@angular/material/dialog';
 import { Song } from 'src/app/model/song';
 import { SongsService } from 'src/app/services/songs.service';
-import 'tw-elements';
 import { CreateSongComponent } from './create-song/create-song.component';
 import { SongDetailComponent } from './song-detail/song-detail.component';
 
@@ -42,6 +41,9 @@ export class SongsListComponent implements OnInit {
     this.songsOp.getAllSongs().subscribe((songs: Song[]) => {
       this.originalSongs = songs;
       this.songs = songs;
+
+      console.log(this.songs);
+      
     });
   }
 
@@ -65,6 +67,9 @@ export class SongsListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
+      if(result === true) {
+        this.fetchData();
+      }
     });
   }
 }

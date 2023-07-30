@@ -1,6 +1,9 @@
-import { Component, Inject, OnChanges, SimpleChanges } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { firstValueFrom, take } from 'rxjs';
+import { sortRecords } from 'src/app/mappers/song.mapper';
 import { Song } from 'src/app/model/song';
+import { SongsService } from 'src/app/services/songs.service';
 
 @Component({
   selector: 'app-song-detail',
@@ -18,6 +21,7 @@ export class SongDetailComponent {
 
   constructor(
     public dialogRef: MatDialogRef<SongDetailComponent>,
+    private songsService: SongsService,
   ) { }
 
   setSongToEdit(originalSong: Song): void {
@@ -25,11 +29,15 @@ export class SongDetailComponent {
   }
 
   onClose(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
-  onSave(): void {
-
+  async onSave(): Promise<void> {
+    const source$ = this.songsService.updateSong(this.song).pipe(take(1));
+    const returnValue = await firstValueFrom(source$);
+    console.log(returnValue);
+    
+    this.dialogRef.close(true);
   }
 
   addRecord(): void {
@@ -41,20 +49,15 @@ export class SongDetailComponent {
   }
 
   saveRecord(): void {
-    this.song.records = [{date: this.newRecord, performer: "0"}, ... this.song.records]
+    this.song.records = sortRecords([{date: this.newRecord, performer: "0"}, ... this.song.records]
       .map((record: any) => {
         return { date: new Date(record.date), performer: record.performerID}
-    }).sort((a: {
-        date: Date;
-        performer: string;
-    }, b: {
-        date: Date;
-        performer: string;
-    }) => b.date.getTime() - a.date.getTime());;
+    }));
 
     this.song.newestRecordDate = this.song.records[0].date;
     this.newRecord = new Date();
     this.isAddingRecord = false;
+    
   }
 
 }

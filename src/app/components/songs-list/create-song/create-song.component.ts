@@ -1,10 +1,11 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 
 import {
-  MatDialogRef,
-  MAT_DIALOG_DATA,
+  MatDialogRef
 } from '@angular/material/dialog';
+import { firstValueFrom, take } from 'rxjs';
 import { Song } from 'src/app/model/song';
+import { SongsService } from 'src/app/services/songs.service';
 
 @Component({
   selector: 'app-create-song',
@@ -17,18 +18,23 @@ export class CreateSongComponent {
   public numberInput: string = ""
 
   constructor(
-    public dialogRef: MatDialogRef<CreateSongComponent>,
+    private dialogRef: MatDialogRef<CreateSongComponent>,
+    private songsService: SongsService,
   ) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  onSave(): void {
+  async onSave(): Promise<void> {
     let newSong: Song = new Song();
     newSong.songName = this.nameInput;
     newSong.songNumber = this.numberInput;
-    console.log(newSong);
+    console.log("posting: ", newSong);
+    const source$ = this.songsService.postNewSong(newSong).pipe(take(1));
+    const returnValue = await firstValueFrom(source$);
+    console.log("got back", returnValue);
+    
   }
 
   onClose() {
