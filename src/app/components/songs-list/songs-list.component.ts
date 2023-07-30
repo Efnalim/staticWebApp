@@ -19,7 +19,10 @@ export class SongsListComponent implements OnInit {
 
   public nameInput: string = ""
 
-  constructor(private songsOp: SongsService, public dialog: MatDialog) {}
+  constructor(
+    private songsOp: SongsService,
+    public dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
     this.fetchData();
@@ -58,7 +61,7 @@ export class SongsListComponent implements OnInit {
 
   openDetail(song: Song): void {
     let dialogRef = this.dialog.open(SongDetailComponent, { width: '100vw' });
-    dialogRef.componentInstance.song = song;
+    dialogRef.componentInstance.setSongToEdit(song);
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');

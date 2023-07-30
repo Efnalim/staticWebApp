@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SongsService } from './services/songs.service';
@@ -22,6 +23,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { CreateSongComponent } from './components/songs-list/create-song/create-song.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SongDetailComponent } from './components/songs-list/song-detail/song-detail.component';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -41,8 +43,10 @@ import { SongDetailComponent } from './components/songs-list/song-detail/song-de
     MatIconModule,
     MatInputModule,
     MatSelectModule,
+    MatDatepickerModule,
     MatDividerModule,
     MatDialogModule,
+    MatNativeDateModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
     FormsModule,
@@ -53,7 +57,10 @@ import { SongDetailComponent } from './components/songs-list/song-detail/song-de
       registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
-  providers: [SongsService],
+  providers: [
+    SongsService,
+    {provide: MAT_DATE_LOCALE, useValue: 'cs-CZ'},
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

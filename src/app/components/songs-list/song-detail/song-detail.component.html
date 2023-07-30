@@ -18,15 +18,28 @@
             <mat-label>Číslo</mat-label>
             <input matInput placeholder="Číslo" [(ngModel)]="song.songNumber" [disabled]="!isEditting">
         </mat-form-field>
-        <mat-list role="list" >
+        <mat-list role="list" style="max-height: 200px;">
             <h3 mat-subheader>Hráno
                 <mat-icon (click)="addRecord()" mat-raised-button color="primary" 
                     style="float: right; cursor: pointer;" *ngIf="isEditting">
                     add
                 </mat-icon>
             </h3>
-            <mat-list-item role="listitem" style="height: unset;" *ngFor="let record of song.records">
+            <mat-form-field *ngIf="isAddingRecord">
+                <input matInput [matDatepicker]="picker" [(ngModel)]="newRecord">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-icon (click)="saveRecord()" mat-raised-button color="primary" 
+                    style="float: right; cursor: pointer; position: absolute; right: 0px;">
+                    check
+                </mat-icon>
+              </mat-form-field>
+            <mat-list-item role="listitem" style="height: unset;" *ngFor="let record of song.records; let i = index">
                 {{ record.date | date:'d.M. YYYY' }}
+                <mat-icon (click)="removeRecord(i)" mat-raised-button color="warn" 
+                    style="position: absolute; right: 16px; cursor: pointer;" *ngIf="isEditting">
+                    close
+                </mat-icon>
             </mat-list-item>
         </mat-list>
     </mat-card-content>

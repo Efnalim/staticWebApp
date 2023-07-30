@@ -18,18 +18,20 @@ export class CreateSongComponent {
 
   constructor(
     public dialogRef: MatDialogRef<CreateSongComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  onAdd(): void {
+  onSave(): void {
     let newSong: Song = new Song();
     newSong.songName = this.nameInput;
     newSong.songNumber = this.numberInput;
     console.log(newSong);
-    
+  }
+
+  onClose() {
+    this.dialogRef.close();
   }
 }
