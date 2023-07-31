@@ -19,13 +19,12 @@
             <input matInput placeholder="Číslo" [(ngModel)]="song.songNumber" [disabled]="!isEditting">
         </mat-form-field>
         <mat-list role="list" style="max-height: 200px;">
-            <h3 mat-subheader>Hráno
-                <mat-icon (click)="addRecord()" mat-raised-button color="primary" 
-                    style="float: right; cursor: pointer;" *ngIf="isEditting">
-                    add
-                </mat-icon>
+            <h3 mat-subheader style="position: relative;">Hráno
+                <button class="center-icon" mat-icon-button (click)="addRecord()" style="float: right; cursor: pointer;" *ngIf="isEditting">
+                    <mat-icon color="primary">add</mat-icon>
+                </button>
             </h3>
-            <mat-form-field *ngIf="isAddingRecord">
+            <mat-form-field *ngIf="isAddingRecord && isEditting ">
                 <input matInput [matDatepicker]="picker" [(ngModel)]="newRecord">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -36,15 +35,18 @@
               </mat-form-field>
             <mat-list-item role="listitem" style="height: unset;" *ngFor="let record of song.records; let i = index">
                 {{ record.date | date:'d.M. YYYY' }}
-                <mat-icon (click)="removeRecord(i)" mat-raised-button color="warn" 
-                    style="position: absolute; right: 16px; cursor: pointer;" *ngIf="isEditting">
-                    close
-                </mat-icon>
+                <button class="center-icon" mat-icon-button (click)="removeRecord(i)" style="position: absolute; right: 16px; cursor: pointer;" *ngIf="isEditting">
+                    <mat-icon color="warn">close</mat-icon>
+                </button>
             </mat-list-item>
         </mat-list>
     </mat-card-content>
     <mat-card-footer style="padding: 0.5rem;">
-        <button (click)="onClose()" mat-raised-button color="accent" style="float: left;">
+        <button (click)="onDelete()" mat-raised-button color="warn" style="float: left;" [hidden]="!isEditting">
+            <mat-icon>delete_forever</mat-icon>
+            Smazat
+        </button>
+        <button (click)="onClose()" mat-raised-button color="accent" style="float: right;" [hidden]="isEditting">
             <mat-icon>arrow_back</mat-icon>
             Zpět
         </button>

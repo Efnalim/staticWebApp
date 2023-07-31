@@ -40,6 +40,10 @@ export class SongDetailComponent {
     this.dialogRef.close(true);
   }
 
+  async onDelete(): Promise<void> {
+    
+  }
+
   addRecord(): void {
     this.isAddingRecord = true;
   }

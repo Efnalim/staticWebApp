@@ -21,11 +21,12 @@ export class SongsService {
           .map((song: any) => this.mapper.mapToDomain(song))
           .sort((a: Song, b: Song) => {
             if (
-              a.newestRecordDate == undefined ||
-              b.newestRecordDate == undefined
-            )
-              return false;
-            return a.newestRecordDate > b.newestRecordDate;
+              a.newestRecordDate == undefined 
+            ) return true;
+            if (
+              b.newestRecordDate == undefined 
+            ) return false;
+            return a.newestRecordDate.getTime() < b.newestRecordDate.getTime();
           })
       )
     );

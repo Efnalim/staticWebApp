@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SongsService } from './services/songs.service';
@@ -46,6 +47,7 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatDividerModule,
     MatDialogModule,
+    MatMenuModule,
     MatNativeDateModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
@@ -57,10 +59,7 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
       registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
-  providers: [
-    SongsService,
-    {provide: MAT_DATE_LOCALE, useValue: 'cs-CZ'},
-  ],
+  providers: [SongsService, { provide: MAT_DATE_LOCALE, useValue: 'cs-CZ' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

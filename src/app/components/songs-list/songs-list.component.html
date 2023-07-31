@@ -3,10 +3,23 @@
     <mat-card-title>
       Písně
     </mat-card-title>
-      <button (click)="click()" mat-raised-button color="primary" style="float: right">
-        <mat-icon>add</mat-icon>
-        Nová
+    <button (click)="click()" mat-raised-button color="primary" style="float: right">
+      <mat-icon>add</mat-icon>
+      Nová
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" hidden>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>music_note</mat-icon>
+        <span>Chvály</span>
       </button>
+      <button mat-menu-item>
+        <mat-icon>menu_book</mat-icon>
+        <span>Bratrské písně</span>
+      </button>
+    </mat-menu>
   </mat-card-header>
   <mat-divider style="margin-top: 0.5rem;"></mat-divider>
   <mat-card-content style="padding-top: 16px;">
