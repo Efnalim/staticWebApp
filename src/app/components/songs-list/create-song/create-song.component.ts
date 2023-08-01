@@ -23,21 +23,26 @@ export class CreateSongComponent {
   ) { }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   async onSave(): Promise<void> {
     let newSong: Song = new Song();
     newSong.songName = this.nameInput;
     newSong.songNumber = this.numberInput;
-    console.log("posting: ", newSong);
+
     const source$ = this.songsService.postNewSong(newSong).pipe(take(1));
-    const returnValue = await firstValueFrom(source$);
-    console.log("got back", returnValue);
+
+    try {
+      const returnValue = await firstValueFrom(source$);
+      this.dialogRef.close(true);
+    } catch (err) {
+
+    } 
     
   }
 
   onClose() {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 }

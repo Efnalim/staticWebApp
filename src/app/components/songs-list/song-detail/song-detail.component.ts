@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { firstValueFrom, take } from 'rxjs';
 import { sortRecords } from 'src/app/mappers/song.mapper';
 import { Song } from 'src/app/model/song';
 import { SongsService } from 'src/app/services/songs.service';
+import { ConfirmationComponent } from '../../dialog/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-song-detail',
@@ -22,6 +23,7 @@ export class SongDetailComponent {
   constructor(
     public dialogRef: MatDialogRef<SongDetailComponent>,
     private songsService: SongsService,
+    private dialog: MatDialog,
   ) { }
 
   setSongToEdit(originalSong: Song): void {
@@ -35,13 +37,27 @@ export class SongDetailComponent {
   async onSave(): Promise<void> {
     const source$ = this.songsService.updateSong(this.song).pipe(take(1));
     const returnValue = await firstValueFrom(source$);
-    console.log(returnValue);
     
     this.dialogRef.close(true);
   }
 
   async onDelete(): Promise<void> {
+    let dialogRef = this.dialog.open(ConfirmationComponent, {
+      width: '250px',
+      data: { question: `Opravdu chcete smazat píseň: ${this.song.songName} ?` }
+    });
+
+    const retValsource$ = await dialogRef.afterClosed().pipe(take(1));
+    const retVal = await firstValueFrom(retValsource$);
+
+    if(!retVal) {
+      return;
+    }
+
+    const source$ = this.songsService.deleteSong(this.song).pipe(take(1));
+    const returnValue = await firstValueFrom(source$);
     
+    this.dialogRef.close(true);
   }
 
   addRecord(): void {

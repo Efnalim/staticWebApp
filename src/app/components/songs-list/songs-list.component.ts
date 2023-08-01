@@ -17,6 +17,7 @@ export class SongsListComponent implements OnInit {
   public originalSongs: Song[] = [];
 
   public nameInput: string = ""
+  public numberInput: string = ""
 
   constructor(
     private songsOp: SongsService,
@@ -33,7 +34,9 @@ export class SongsListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+      if(result) {
+        this.fetchData();
+      }
     });
   }
 
@@ -41,9 +44,6 @@ export class SongsListComponent implements OnInit {
     this.songsOp.getAllSongs().subscribe((songs: Song[]) => {
       this.originalSongs = songs;
       this.songs = songs;
-
-      console.log(this.songs);
-      
     });
   }
 
@@ -61,12 +61,19 @@ export class SongsListComponent implements OnInit {
     this.songs = this.originalSongs.filter(s => s.songName.toLowerCase().includes(this.nameInput.toLowerCase()));
   }
 
+  onNumberInputChanged(event$: any) {
+    this.songs = this.originalSongs.filter(s => 
+      (s.songNumber != null) && 
+      (s.songNumber != undefined) && 
+      JSON.stringify(s.songNumber).toLowerCase().includes(this.numberInput.toLowerCase())
+    );
+  }
+
   openDetail(song: Song): void {
     let dialogRef = this.dialog.open(SongDetailComponent, { width: '100vw' });
     dialogRef.componentInstance.setSongToEdit(song);
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
       if(result === true) {
         this.fetchData();
       }

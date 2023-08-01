@@ -22,14 +22,14 @@
     </mat-menu>
   </mat-card-header>
   <mat-divider style="margin-top: 0.5rem;"></mat-divider>
-  <mat-card-content style="padding-top: 16px;">
+  <mat-card-content style="padding-top: 16px; flex-grow: 1; display: flex; flex-direction: column;">
     <section>
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Hledat název" [(ngModel)]="nameInput" (input)="onNameInputChanged($event)">
       </mat-form-field>
-      <!-- <mat-form-field class="example-full-width">
-        <input matInput placeholder="Hledat číslo">
-      </mat-form-field> -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Hledat číslo" [(ngModel)]="numberInput" (input)="onNumberInputChanged($event)">
+      </mat-form-field>
     </section>
     <mat-divider></mat-divider>
     <mat-divider style="margin-top: 2px;"></mat-divider>
@@ -38,10 +38,12 @@
       <div style="width: 20%;">číslo</div>
       <div style="width: 30%;">hráno</div>
     </h3>
-    <mat-list role="list">
+    <mat-list role="list" style="max-height: 60vh; overflow-y: scroll;">
       <mat-list-item role="listitem" *ngFor="let song of songs" (click)="openDetail(song)"
         style="height: unset; padding: unset; display: flex;">
-        <div style="width: 50%;">{{ song.songName }}</div>
+        <div style="width: 48%; overflow: hidden; margin-right: 2%; text-overflow: ellipsis;">
+          {{ song.songName }}
+        </div>
         <div style="width: 20%;">{{ (!song.songNumber) ? "-" : song.songNumber }}</div>
         <div style="width: 30%;">{{ (song.newestRecordDate !== undefined) ? (song.newestRecordDate | date:'d.M. YYYY') : "" }}</div>
       </mat-list-item>

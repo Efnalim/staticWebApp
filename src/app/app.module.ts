@@ -25,6 +25,7 @@ import { CreateSongComponent } from './components/songs-list/create-song/create-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SongDetailComponent } from './components/songs-list/song-detail/song-detail.component';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { ConfirmationComponent } from './components/dialog/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
     SongsListComponent,
     CreateSongComponent,
     SongDetailComponent,
+    ConfirmationComponent,
   ],
   imports: [
     HttpClientModule,

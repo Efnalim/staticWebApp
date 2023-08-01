@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Song } from '../model/song';
 import { SongMapper } from '../mappers/song.mapper';
@@ -21,7 +21,7 @@ export class SongsService {
           .map((song: any) => this.mapper.mapToDomain(song))
           .sort((a: Song, b: Song) => {
             if (
-              a.newestRecordDate == undefined 
+              a.newestRecordDate == undefined
             ) return true;
             if (
               b.newestRecordDate == undefined 
@@ -41,6 +41,11 @@ export class SongsService {
   public updateSong(song: Song): Observable<JSON[]> {
     return this.http
       .put<JSON[]>(`${this.ROOT_URL}`, this.mapSongToUpdateSongDTO(song));
+  }
+
+  public deleteSong(song: Song): Observable<JSON[]> {
+    return this.http
+      .put<JSON[]>(`${this.ROOT_URL}`, { delete: true, _id: song.id });
   }
 
   private mapSongToCreateSongDTO(song: Song): CreateSongDTO {
