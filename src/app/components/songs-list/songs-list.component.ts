@@ -79,4 +79,8 @@ export class SongsListComponent implements OnInit {
       }
     });
   }
+
+  showHint() {
+    
+  }
 }
