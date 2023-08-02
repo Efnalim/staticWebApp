@@ -42,7 +42,8 @@
         </mat-list>
     </mat-card-content>
     <mat-card-footer style="padding: 0.5rem;">
-        <button (click)="onDelete()" mat-raised-button color="warn" style="float: left;" [hidden]="!isEditting">
+        <!-- <button (click)="onDelete()" mat-raised-button color="warn" style="float: left;" hidden [hidden]="!isEditting"> -->
+        <button (click)="onDelete()" mat-raised-button color="warn" style="float: left;" hidden>
             <mat-icon>delete_forever</mat-icon>
             Smazat
         </button>
