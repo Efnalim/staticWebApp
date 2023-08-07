@@ -19,6 +19,11 @@ export class SongMapper {
             if(!(retVal.newestRecordDate instanceof Date)) {
                 retVal.newestRecordDate = undefined;
             }
+
+            let compareDate = new Date();
+            compareDate.setFullYear(compareDate.getFullYear() - 1);
+            const compareDateValue = compareDate.getTime();
+            retVal.playedThisYearTimes = retVal.records.filter((record) => record.date.getTime() > compareDateValue).length;
         }
         return retVal;
     }

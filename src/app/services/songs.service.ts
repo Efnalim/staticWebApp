@@ -61,7 +61,8 @@ export class SongsService {
     dto._id = song.id;
     dto.name = song.songName;
     dto.number = song.songNumber;
-    dto.records = song.records.map(rec => {return {date: rec.date.toISOString(), performer: rec.performer}})
+
+    dto.records = song.records.map(rec => {return {date: rec.date, performer: rec.performer}})
     return dto;
 
   }
@@ -93,7 +94,7 @@ class UpdateSongDTO {
   name: string;
   number: string;
   records: {
-    date: string;
+    date: Date;
     performer: string;
   }[];
 }

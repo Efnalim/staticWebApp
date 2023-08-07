@@ -19,6 +19,10 @@ export class SongsListComponent implements OnInit {
   public nameInput: string = ""
   public numberInput: string = ""
 
+  private sortByNameDescending: boolean = true;
+  private sortByDateDescending: boolean = true;
+  private sortByPlayedTimesDescending: boolean = true;
+
   constructor(
     private songsOp: SongsService,
     public dialog: MatDialog,
@@ -80,7 +84,36 @@ export class SongsListComponent implements OnInit {
     });
   }
 
-  showHint() {
-    
+  sortSongsByDate() {
+    this.songs.sort((a, b) => {
+      if(!a.newestRecordDate) return -1;
+      if(!b.newestRecordDate) return 1;
+      return a.newestRecordDate.getTime() - b.newestRecordDate.getTime();
+    })
+
+    if(this.sortByDateDescending) {
+      this.songs.reverse();
+    }
+    this.sortByDateDescending = !this.sortByDateDescending
+  }
+
+  sortSongsByName() {
+    this.songs.sort((a, b) => {
+      return ('' + a.songName).localeCompare(b.songName);
+    })
+
+    if(this.sortByNameDescending) {
+      this.songs.reverse();
+    }
+    this.sortByNameDescending = !this.sortByNameDescending
+  }
+
+  sortSongsByPlayedTimes() {
+    this.songs.sort((a, b) => a.playedThisYearTimes - b.playedThisYearTimes);
+
+    if(this.sortByPlayedTimesDescending) {
+      this.songs.reverse();
+    }
+    this.sortByPlayedTimesDescending = !this.sortByPlayedTimesDescending
   }
 }

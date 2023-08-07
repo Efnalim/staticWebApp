@@ -11,7 +11,7 @@
         <mat-icon>add</mat-icon>
         Nová píseň
       </button>
-      <a (click)="showHint()" 
+      <a 
         href="https://app.tango.us/app/workflow/Jak-p-idat-z-znam-o-hran--p-sn--a57c8ab78e5349d999887b29cc01555b" 
         target="_blank" mat-menu-item>
         <mat-icon>question_mark</mat-icon>
@@ -33,16 +33,16 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Hledat název" [(ngModel)]="nameInput" (input)="onNameInputChanged($event)">
       </mat-form-field>
-      <mat-form-field class="example-full-width">
+      <!-- <mat-form-field class="example-full-width">
         <input matInput placeholder="Hledat číslo" [(ngModel)]="numberInput" (input)="onNumberInputChanged($event)">
-      </mat-form-field>
+      </mat-form-field> -->
     </section>
     <mat-divider></mat-divider>
     <mat-divider style="margin-top: 2px;"></mat-divider>
     <h3 mat-subheader style="display: flex; margin: unset;">
-      <div style="width: 50%;">název</div>
-      <div style="width: 20%;">číslo</div>
-      <div style="width: 30%;">hráno</div>
+      <div style="width: 50%;" (click)="sortSongsByName()">název</div>
+      <div style="width: 20%;" (click)="sortSongsByPlayedTimes()">za rok</div>
+      <div style="width: 30%;" (click)="sortSongsByDate()">naposled</div>
     </h3>
     <mat-list role="list" style="max-height: 60vh; overflow-y: scroll;">
       <mat-list-item role="listitem" *ngFor="let song of songs" (click)="openDetail(song)"
@@ -50,7 +50,7 @@
         <div style="width: 48%; overflow: hidden; margin-right: 2%; text-overflow: ellipsis;">
           {{ song.songName }}
         </div>
-        <div style="width: 20%;">{{ (!song.songNumber) ? "-" : song.songNumber }}</div>
+        <div style="width: 20%;">{{ (song.playedThisYearTimes) }}x</div>
         <div style="width: 30%;">{{ (song.newestRecordDate !== undefined) ? (song.newestRecordDate | date:'d.M. YYYY') : "" }}</div>
       </mat-list-item>
     </mat-list>
