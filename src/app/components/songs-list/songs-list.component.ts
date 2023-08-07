@@ -19,7 +19,7 @@ export class SongsListComponent implements OnInit {
   public nameInput: string = ""
   public numberInput: string = ""
 
-  private sortByNameDescending: boolean = true;
+  private sortByNameDescending: boolean = false;
   private sortByDateDescending: boolean = true;
   private sortByPlayedTimesDescending: boolean = true;
 
