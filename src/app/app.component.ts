@@ -16,8 +16,10 @@ export class AppComponent implements OnInit {
         })
       }, 60000);
     }
-    this.swUpdate.versionUpdates.subscribe(() => {
-      location.reload();
+    this.swUpdate.versionUpdates.subscribe((event) => {
+      if(event.type === "VERSION_READY") {
+        location.reload();
+      }
     });
   }
 
