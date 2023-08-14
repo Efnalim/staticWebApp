@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SongsService } from './services/songs.service';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +7,19 @@ import { SongsService } from './services/songs.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor(private songsOp: SongsService) {}
+  constructor(
+    private swUpdate: SwUpdate,
+  ) {
+    if (this.swUpdate.isEnabled) {
+      setInterval(() => {
+        this.swUpdate.checkForUpdate().then(() => {
+        })
+      }, 60000);
+    }
+    this.swUpdate.versionUpdates.subscribe(() => {
+      location.reload();
+    });
+  }
 
   private user: any;
   title = 'app';
