@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import {
   MatDialog
 } from '@angular/material/dialog';
+import { MenuItem } from 'src/app/model/menu';
 import { Song } from 'src/app/model/song';
-import { SongsService } from 'src/app/services/songs.service';
 import { CreateSongComponent } from './create-song/create-song.component';
 import { SongDetailComponent } from './song-detail/song-detail.component';
 
@@ -12,9 +12,15 @@ import { SongDetailComponent } from './song-detail/song-detail.component';
   templateUrl: './songs-list.component.html',
   styleUrls: ['./songs-list.component.css'],
 })
-export class SongsListComponent implements OnInit {
-  public songs: Song[] = [];
-  public originalSongs: Song[] = [];
+export class SongsListComponent implements OnChanges {
+
+  @Input() songs: Song[] = [];
+  @Input() menuItems: MenuItem[] = [];
+  @Input() title: string = "";
+
+  @Output() reloadRequest = new EventEmitter<boolean>();
+
+  public sortedSongs: Song[] = [];
 
   public nameInput: string = ""
   public numberInput: string = ""
@@ -24,12 +30,11 @@ export class SongsListComponent implements OnInit {
   private sortByPlayedTimesDescending: boolean = true;
 
   constructor(
-    private songsOp: SongsService,
     public dialog: MatDialog,
   ) {}
 
-  ngOnInit(): void {
-    this.fetchData();
+  ngOnChanges(changes: SimpleChanges): void {
+    this.sortedSongs = this.songs.slice();
   }
 
   click(): void {
@@ -39,15 +44,8 @@ export class SongsListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if(result) {
-        this.fetchData();
+        this.reloadRequest.next(true);
       }
-    });
-  }
-
-  fetchData() {
-    this.songsOp.getAllSongs().subscribe((songs: Song[]) => {
-      this.originalSongs = songs;
-      this.songs = songs;
     });
   }
 
@@ -62,11 +60,11 @@ export class SongsListComponent implements OnInit {
   }
 
   onNameInputChanged(event$: any) {
-    this.songs = this.originalSongs.filter(s => s.songName.toLowerCase().includes(this.nameInput.toLowerCase()));
+    this.sortedSongs = this.songs.filter(s => s.songName.toLowerCase().includes(this.nameInput.toLowerCase()));
   }
 
   onNumberInputChanged(event$: any) {
-    this.songs = this.originalSongs.filter(s => 
+    this.sortedSongs = this.songs.filter(s => 
       (s.songNumber != null) && 
       (s.songNumber != undefined) && 
       JSON.stringify(s.songNumber).toLowerCase().includes(this.numberInput.toLowerCase())
@@ -79,40 +77,40 @@ export class SongsListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if(result === true) {
-        this.fetchData();
+        this.reloadRequest.next(true);
       }
     });
   }
 
   sortSongsByDate() {
-    this.songs.sort((a, b) => {
+    this.sortedSongs.sort((a, b) => {
       if(!a.newestRecordDate) return -1;
       if(!b.newestRecordDate) return 1;
       return a.newestRecordDate.getTime() - b.newestRecordDate.getTime();
     })
 
     if(this.sortByDateDescending) {
-      this.songs.reverse();
+      this.sortedSongs.reverse();
     }
     this.sortByDateDescending = !this.sortByDateDescending
   }
 
   sortSongsByName() {
-    this.songs.sort((a, b) => {
+    this.sortedSongs.sort((a, b) => {
       return ('' + a.songName).localeCompare(b.songName);
     })
 
     if(this.sortByNameDescending) {
-      this.songs.reverse();
+      this.sortedSongs.reverse();
     }
     this.sortByNameDescending = !this.sortByNameDescending
   }
 
   sortSongsByPlayedTimes() {
-    this.songs.sort((a, b) => a.playedThisYearTimes - b.playedThisYearTimes);
+    this.sortedSongs.sort((a, b) => a.playedThisYearTimes - b.playedThisYearTimes);
 
     if(this.sortByPlayedTimesDescending) {
-      this.songs.reverse();
+      this.sortedSongs.reverse();
     }
     this.sortByPlayedTimesDescending = !this.sortByPlayedTimesDescending
   }

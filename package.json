@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build-prod": "ng build --output-hashing=all",
-    "create": "ng g c components/dialog/confirmation",
+    "create": "ng g c modules/songs/worship-songs",
     "worker": "ng add @angular/pwa --project app --force"
   },
   "private": true,

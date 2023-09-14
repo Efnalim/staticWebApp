@@ -1,7 +1,7 @@
 <mat-card class="example-card">
   <mat-card-header style="justify-content: space-between;">
     <mat-card-title>
-      Chvály
+      {{ title }}
     </mat-card-title>
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
       <mat-icon>menu</mat-icon>
@@ -11,20 +11,10 @@
         <mat-icon>add</mat-icon>
         Nová píseň
       </button>
-      <a 
-        href="https://app.tango.us/app/workflow/Jak-p-idat-z-znam-o-hran--p-sn--a57c8ab78e5349d999887b29cc01555b" 
-        target="_blank" mat-menu-item>
-        <mat-icon>question_mark</mat-icon>
-        Nápověda
+      <a *ngFor="let item of menuItems" href="{{item.url}}" [attr.target]="(item.openNewTab) ? '_blank' : null" mat-menu-item>
+        <mat-icon>{{ item.icon }}</mat-icon>
+        {{ item.title }}
       </a>
-      <!-- <button mat-menu-item hidden>
-        <mat-icon>music_note</mat-icon>
-        <span>Chvály</span>
-      </button>
-      <button mat-menu-item hidden>
-        <mat-icon>menu_book</mat-icon>
-        <span>Bratrské písně</span>
-      </button> -->
     </mat-menu>
   </mat-card-header>
   <mat-divider style="margin-top: 0.5rem;"></mat-divider>
@@ -33,9 +23,6 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Hledat název" [(ngModel)]="nameInput" (input)="onNameInputChanged($event)">
       </mat-form-field>
-      <!-- <mat-form-field class="example-full-width">
-        <input matInput placeholder="Hledat číslo" [(ngModel)]="numberInput" (input)="onNumberInputChanged($event)">
-      </mat-form-field> -->
     </section>
     <mat-divider></mat-divider>
     <mat-divider style="margin-top: 2px;"></mat-divider>
@@ -45,7 +32,7 @@
       <div style="width: 30%;" (click)="sortSongsByDate()">naposled</div>
     </h3>
     <mat-list role="list" style="max-height: 60vh; overflow-y: scroll;">
-      <mat-list-item role="listitem" *ngFor="let song of songs" (click)="openDetail(song)"
+      <mat-list-item role="listitem" *ngFor="let song of sortedSongs" (click)="openDetail(song)"
         style="height: unset; padding: unset; display: flex;">
         <div style="width: 48%; overflow: hidden; margin-right: 2%; text-overflow: ellipsis;">
           {{ song.songName }}

@@ -1,10 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { SharedModule } from '../shared/shared.module';
+import { HymnsComponent } from './hymns/hymns.component';
+import { SongsRoutingModule } from './songs-routing.module';
+import { WorshipSongsComponent } from './worship-songs/worship-songs.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    HymnsComponent,
+    WorshipSongsComponent
+  ],
   imports: [
-    CommonModule
+    SongsRoutingModule,
+    SharedModule,
   ]
 })
 export class SongsModule { }
