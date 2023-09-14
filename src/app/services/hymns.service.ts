@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { Song } from '../model/song';
+import { Song, SongType } from '../model/song';
 import { SongMapper } from '../mappers/song.mapper';
 
 @Injectable()
@@ -19,6 +19,10 @@ export class HymnsService {
       map((response: any) =>
         response
           .map((song: any) => this.mapper.mapToDomain(song))
+          .map((song: Song) => {
+            song.type = SongType.HYMNS
+            return song
+          })
           .sort((a: Song, b: Song) => {
             if (
               a.songNumber == undefined

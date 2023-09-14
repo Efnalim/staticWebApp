@@ -7,6 +7,7 @@ export class Song {
         this.newestRecordDate;
         this.records = [];
         this.playedThisYearTimes = 0;
+        this.type = SongType.WORSHIP_SONGS;
     }
     
     id: string;
@@ -14,8 +15,14 @@ export class Song {
     songNumber: string;
     newestRecordDate: Date | undefined;
     playedThisYearTimes: number;
+    type: SongType;
     records: {
         date: Date;
         performer: string;
     }[];
 } 
+
+export enum SongType {
+    WORSHIP_SONGS = "worship_songs",
+    HYMNS = "hymns",
+}
