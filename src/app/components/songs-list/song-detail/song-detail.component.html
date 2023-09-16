@@ -8,16 +8,16 @@
             Upravit
         </mat-slide-toggle>
     </mat-card-header>
-    <mat-card-content style="padding-top: 16px; flex-grow: 1;">
+    <mat-card-content style="padding: 16px 4px; flex-grow: 1;">
     <mat-divider></mat-divider>
         <mat-form-field class="example-full-width">
             <mat-label>Název</mat-label>
             <input matInput placeholder="Název" [(ngModel)]="song.songName" [disabled]="!isEditting">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
+        <!-- <mat-form-field class="example-full-width">
             <mat-label>Číslo</mat-label>
             <input matInput placeholder="Číslo" [(ngModel)]="song.songNumber" [disabled]="!isEditting">
-        </mat-form-field>
+        </mat-form-field> -->
         <mat-list role="list" style="max-height: 200px;">
             <h3 mat-subheader style="position: relative;">Hráno
                 <button class="center-icon" mat-icon-button (click)="addRecord()" style="float: right; cursor: pointer;" *ngIf="isEditting">
@@ -34,7 +34,16 @@
                 </mat-icon>
               </mat-form-field>
             <mat-list-item role="listitem" style="height: unset;" *ngFor="let record of song.records; let i = index">
-                {{ record.date | date:'d.M. YYYY' }}
+                {{ record.date | date:'d.M. YYYY' }} -  
+                <span *ngIf="!isEditting">
+                    {{ (record.performer === undefined) ? "neuvedeno" : record.performer }}
+                </span>
+                <span *ngIf="isEditting" [matMenuTriggerFor]="menu" style="cursor: pointer;">
+                    {{ (record.performer === undefined) ? "neuvedeno" : record.performer }} <-
+                </span>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item *ngFor="let performer of performers" (click)="setPerformerOfRecord(record, performer)">{{ performer }}</button>
+                </mat-menu>
                 <button class="center-icon" mat-icon-button (click)="removeRecord(i)" style="position: absolute; right: 16px; cursor: pointer;" *ngIf="isEditting">
                     <mat-icon color="warn">close</mat-icon>
                 </button>

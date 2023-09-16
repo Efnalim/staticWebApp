@@ -9,7 +9,7 @@ export class SongMapper {
         if(!json.records) return retVal;
         
         retVal.records = sortRecords(json.records.map((record: any) => {
-            return { date: new Date(record.date), performer: record.performerID}
+            return { date: new Date(record.date), performer: record.performer}
         }))
 
         if(retVal.records.length == 0 ) {

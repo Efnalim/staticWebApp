@@ -77,7 +77,6 @@ export class HymnsService {
 
     dto.records = song.records.map(rec => {return {date: rec.date, performer: rec.performer}})
     return dto;
-
   }
 }
 class CreateSongDTO {

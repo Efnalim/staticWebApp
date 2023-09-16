@@ -26,3 +26,17 @@ export enum SongType {
     WORSHIP_SONGS = "worship_songs",
     HYMNS = "hymns",
 }
+
+export const hymnsPerformers: string[] = [
+    "Anička",
+    "Eliška",
+    "Jani",
+    "Jirka",
+    "Milan"
+]
+
+export const worshipSongsPerformers: string[] = [
+    "OG",
+    "NG",
+    "MIX",
+]
