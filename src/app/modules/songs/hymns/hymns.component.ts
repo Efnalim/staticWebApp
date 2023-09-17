@@ -10,13 +10,15 @@ const menuItems: MenuItem[] = [
     title: "Nápověda",
     icon: "question_mark",
     url: "https://app.tango.us/app/workflow/Jak-p-idat-z-znam-o-hran--p-sn--a57c8ab78e5349d999887b29cc01555b",
-    openNewTab: true
+    openNewTab: true,
+    newFeature: false
   },
   {
     title: "Chvály",
     icon: "music_note",
     url: "/songs/worship",
-    openNewTab: false
+    openNewTab: false,
+    newFeature: false
   },
 ]
 
@@ -38,6 +40,7 @@ export class HymnsComponent implements OnInit{
   ) {}
   
   ngOnInit(): void {
+    localStorage.setItem('hymns', "visited")
     this.fetchData();
   }
 

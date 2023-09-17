@@ -3,4 +3,5 @@ export interface MenuItem {
     icon: string
     url: string
     openNewTab: boolean
+    newFeature: boolean
 }

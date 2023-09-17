@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -14,7 +15,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
 
 import { ConfirmationComponent } from 'src/app/components/dialog/confirmation/confirmation.component';
 import { CreateSongComponent } from 'src/app/components/songs-list/create-song/create-song.component';
@@ -29,6 +29,7 @@ import { SongsListComponent } from 'src/app/components/songs-list/songs-list.com
     ConfirmationComponent,
   ],
   imports: [
+    MatBadgeModule,
     MatButtonModule,
     MatCardModule,
     MatListModule,

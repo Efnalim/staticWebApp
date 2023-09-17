@@ -49,6 +49,12 @@ export class SongsListComponent implements OnChanges {
     });
   }
 
+  itemHasNewFeature(item: MenuItem): boolean {
+    console.log(item);
+    
+    return item.newFeature;
+  }
+
   getNewestDate(song: Song): string {
     if (song.newestRecordDate)
       return song.newestRecordDate.toLocaleDateString();

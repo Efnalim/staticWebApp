@@ -9,13 +9,15 @@ const menuItems: MenuItem[] = [
     title: "Nápověda",
     icon: "question_mark",
     url: "https://app.tango.us/app/workflow/Jak-p-idat-z-znam-o-hran--p-sn--a57c8ab78e5349d999887b29cc01555b",
-    openNewTab: true
+    openNewTab: true,
+    newFeature: false
   },
   {
     title: "Bratrské písně",
     icon: "menu_book",
     url: "/songs/hymns",
-    openNewTab: false
+    openNewTab: false,
+    newFeature: localStorage.getItem("hymns") === null
   },
 ]
 
