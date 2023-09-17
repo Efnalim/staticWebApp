@@ -93,9 +93,9 @@ export class SongDetailComponent {
 
   saveRecord(): void {
     this.song.records = sortRecords(
-      [{ date: this.newRecord, performer: '0' }, ...this.song.records].map(
+      [{ date: this.newRecord, performer: undefined }, ...this.song.records].map(
         (record: any) => {
-          return { date: new Date(record.date), performer: record.performerID };
+          return { date: new Date(record.date), performer: record.performer };
         }
       )
     );
