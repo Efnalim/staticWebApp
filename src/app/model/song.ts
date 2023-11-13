@@ -39,4 +39,5 @@ export const worshipSongsPerformers: string[] = [
     "OG",
     "NG",
     "MIX",
+    "mládež"
 ]

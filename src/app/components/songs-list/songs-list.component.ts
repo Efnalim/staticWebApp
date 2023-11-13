@@ -3,7 +3,7 @@ import {
   MatDialog
 } from '@angular/material/dialog';
 import { MenuItem } from 'src/app/model/menu';
-import { Song } from 'src/app/model/song';
+import { Song, SongType } from 'src/app/model/song';
 import { CreateSongComponent } from './create-song/create-song.component';
 import { SongDetailComponent } from './song-detail/song-detail.component';
 
@@ -17,6 +17,7 @@ export class SongsListComponent implements OnChanges {
   @Input() songs: Song[] = [];
   @Input() menuItems: MenuItem[] = [];
   @Input() title: string = "";
+  @Input() mode: SongType = SongType.WORSHIP_SONGS;
 
   @Output() reloadRequest = new EventEmitter<boolean>();
 

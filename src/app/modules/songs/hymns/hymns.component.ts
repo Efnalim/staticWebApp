@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from './../../../model/menu'
 import { firstValueFrom } from 'rxjs';
 import { SongsService } from 'src/app/services/songs.service';
-import { Song } from 'src/app/model/song';
+import { Song, SongType } from 'src/app/model/song';
 import { HymnsService } from 'src/app/services/hymns.service';
 
 const menuItems: MenuItem[] = [
@@ -22,6 +22,8 @@ const menuItems: MenuItem[] = [
   },
 ]
 
+const mode: SongType = SongType.HYMNS
+
 const title: string = "Bratrské písně"
 
 @Component({
@@ -34,6 +36,7 @@ export class HymnsComponent implements OnInit{
   public hymns: Song[] = [];
   public title: string = title;
   public menuItems = menuItems;
+  public mode = mode;
 
   constructor(
     private songsOp: HymnsService,

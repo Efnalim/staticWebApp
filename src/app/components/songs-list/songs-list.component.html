@@ -8,7 +8,7 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button (click)="click()" mat-menu-item>
+      <button (click)="click()" mat-menu-item *ngIf="mode !== 'hymns'">
         <mat-icon>add</mat-icon>
         Nová píseň
       </button>
