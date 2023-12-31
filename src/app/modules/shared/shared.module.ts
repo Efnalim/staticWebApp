@@ -20,6 +20,7 @@ import { ConfirmationComponent } from 'src/app/components/dialog/confirmation/co
 import { CreateSongComponent } from 'src/app/components/songs-list/create-song/create-song.component';
 import { SongDetailComponent } from 'src/app/components/songs-list/song-detail/song-detail.component';
 import { SongsListComponent } from 'src/app/components/songs-list/songs-list.component';
+import { MomentPipe } from 'src/app/pipes/moment.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SongsListComponent } from 'src/app/components/songs-list/songs-list.com
     CreateSongComponent,
     SongDetailComponent,
     ConfirmationComponent,
+    MomentPipe,
   ],
   imports: [
     MatBadgeModule,

@@ -34,12 +34,12 @@
                 </mat-icon>
               </mat-form-field>
             <mat-list-item role="listitem" style="height: unset;" *ngFor="let record of song.records; let i = index">
-                {{ record.date | date:'d.M. YYYY' }} -  
+                {{ record.date | dateFormat:'D.M. YYYY'}} -  
                 <span *ngIf="!isEditting">
                     {{ (record.performer === undefined) ? "neuvedeno" : record.performer }}
                 </span>
                 <span *ngIf="isEditting" [matMenuTriggerFor]="menu" style="cursor: pointer;">
-                    {{ (record.performer === undefined) ? "neuvedeno" : record.performer }} <-
+                    {{ (record.performer === undefined) ? "neuvedeno" : record.performer }} -
                 </span>
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item *ngFor="let performer of performers" (click)="setPerformerOfRecord(record, performer)">{{ performer }}</button>

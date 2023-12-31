@@ -18,6 +18,7 @@ export class SongsListComponent implements OnChanges {
   @Input() menuItems: MenuItem[] = [];
   @Input() title: string = "";
   @Input() mode: SongType = SongType.WORSHIP_SONGS;
+  
 
   @Output() reloadRequest = new EventEmitter<boolean>();
 
@@ -51,8 +52,6 @@ export class SongsListComponent implements OnChanges {
   }
 
   itemHasNewFeature(item: MenuItem): boolean {
-    console.log(item);
-    
     return item.newFeature;
   }
 
