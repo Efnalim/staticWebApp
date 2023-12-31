@@ -28,6 +28,7 @@
     "apollo-angular": "^5.0.0",
     "axios": "^1.4.0",
     "graphql": "^16.7.1",
+    "moment": "^2.30.1",
     "realm-web": "^2.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
