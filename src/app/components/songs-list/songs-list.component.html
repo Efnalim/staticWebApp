@@ -24,6 +24,14 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Hledat název" [(ngModel)]="nameInput" (input)="onNameInputChanged($event)">
       </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <!-- <input matInput placeholder="Hledat název" [(ngModel)]="nameInput" (input)="onNameInputChanged($event)"> -->
+        <mat-select matInput multiple placeholder="hudebník" [(ngModel)]="performerInput" (selectionChange)="onPerformerInputChanged($event)">
+          <mat-option *ngFor="let performer of performers" [value]="performer">
+            {{performer}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </section>
     <mat-divider></mat-divider>
     <mat-divider style="margin-top: 2px;"></mat-divider>

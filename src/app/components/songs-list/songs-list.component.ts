@@ -1,9 +1,14 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import {
   MatDialog
 } from '@angular/material/dialog';
 import { MenuItem } from 'src/app/model/menu';
-import { Song, SongType } from 'src/app/model/song';
+import {
+  Song,
+  SongType,
+  hymnsPerformers,
+  worshipSongsPerformers,
+} from 'src/app/model/song';
 import { CreateSongComponent } from './create-song/create-song.component';
 import { SongDetailComponent } from './song-detail/song-detail.component';
 
@@ -12,7 +17,7 @@ import { SongDetailComponent } from './song-detail/song-detail.component';
   templateUrl: './songs-list.component.html',
   styleUrls: ['./songs-list.component.css'],
 })
-export class SongsListComponent implements OnChanges {
+export class SongsListComponent implements OnInit, OnChanges {
 
   @Input() songs: Song[] = [];
   @Input() menuItems: MenuItem[] = [];
@@ -23,9 +28,11 @@ export class SongsListComponent implements OnChanges {
   @Output() reloadRequest = new EventEmitter<boolean>();
 
   public sortedSongs: Song[] = [];
+  public performers: string[] = [];
 
   public nameInput: string = ""
   public numberInput: string = ""
+  public performerInput: string[] = []
 
   private sortByNameDescending: boolean = false;
   private sortByDateDescending: boolean = true;
@@ -34,6 +41,14 @@ export class SongsListComponent implements OnChanges {
   constructor(
     public dialog: MatDialog,
   ) {}
+
+  ngOnInit(): void {
+    if (this.mode === SongType.WORSHIP_SONGS) {
+      this.performers = worshipSongsPerformers;
+    } else if (this.mode === SongType.HYMNS) {
+      this.performers = hymnsPerformers;
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.sortedSongs = this.songs.slice();
@@ -67,6 +82,15 @@ export class SongsListComponent implements OnChanges {
 
   onNameInputChanged(event$: any) {
     this.sortedSongs = this.songs.filter(s => s.songName.toLowerCase().includes(this.nameInput.toLowerCase()));
+  }
+
+  onPerformerInputChanged(event$: any) {
+    console.log(this.performerInput);
+    if(this.performerInput.length == 0) {
+      this.sortedSongs = this.songs
+    } else {
+      this.sortedSongs = this.songs.filter(s => s.records.some(record => this.performerInput.some(chosenPerformer => chosenPerformer === record.performer)));
+    }
   }
 
   onNumberInputChanged(event$: any) {
