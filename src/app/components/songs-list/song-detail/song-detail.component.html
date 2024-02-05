@@ -19,7 +19,7 @@
             <input matInput placeholder="Číslo" [(ngModel)]="song.songNumber" [disabled]="!isEditting">
         </mat-form-field> -->
         <mat-list role="list" style="max-height: 200px;">
-            <h3 mat-subheader style="position: relative;">Hráno
+            <h3 mat-subheader style="position: relative;">Hráno<span style="margin-left: 52px;">hudebník</span> 
                 <button class="center-icon" mat-icon-button (click)="addRecord()" style="float: right; cursor: pointer;" *ngIf="isEditting">
                     <mat-icon color="primary">add</mat-icon>
                 </button>
@@ -33,13 +33,13 @@
                     check
                 </mat-icon>
               </mat-form-field>
-            <mat-list-item role="listitem" style="height: unset;" *ngFor="let record of song.records; let i = index">
-                {{ record.date | dateFormat:'D.M. YYYY'}} -  
-                <span *ngIf="!isEditting">
+            <mat-list-item role="listitem" style="height: unset; position: relative;" *ngFor="let record of song.records; let i = index">
+                {{ record.date | dateFormat:'D.M. YYYY'}}  
+                <span *ngIf="!isEditting" style="position: absolute; margin-left: 96px;">
                     {{ (record.performer === undefined) ? "neuvedeno" : record.performer }}
                 </span>
-                <span *ngIf="isEditting" [matMenuTriggerFor]="menu" style="cursor: pointer;">
-                    {{ (record.performer === undefined) ? "neuvedeno" : record.performer }} -
+                <span *ngIf="isEditting" [matMenuTriggerFor]="menu" style="cursor: pointer; position: absolute; margin-left: 96px;">
+                    {{ (record.performer === undefined) ? "neuvedeno" : record.performer }}
                 </span>
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item *ngFor="let performer of performers" (click)="setPerformerOfRecord(record, performer)">{{ performer }}</button>
