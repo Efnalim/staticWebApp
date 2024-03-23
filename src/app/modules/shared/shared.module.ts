@@ -21,6 +21,8 @@ import { CreateSongComponent } from 'src/app/components/songs-list/create-song/c
 import { SongDetailComponent } from 'src/app/components/songs-list/song-detail/song-detail.component';
 import { SongsListComponent } from 'src/app/components/songs-list/songs-list.component';
 import { MomentPipe } from 'src/app/pipes/moment.pipe';
+import { LoginComponent } from 'src/app/components/login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { MomentPipe } from 'src/app/pipes/moment.pipe';
     CreateSongComponent,
     SongDetailComponent,
     ConfirmationComponent,
+    LoginComponent,
     MomentPipe,
   ],
   imports: [
@@ -49,6 +52,6 @@ import { MomentPipe } from 'src/app/pipes/moment.pipe';
     CommonModule,
   ],
 
-  exports: [SongsListComponent],
+  exports: [SongsListComponent, LoginComponent],
 })
 export class SharedModule {}

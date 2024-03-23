@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: 'songs', loadChildren: () => import('./modules/songs/songs.module').then(mod => mod.SongsModule)},
+  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'songs', pathMatch: 'full'}
 ];
 
