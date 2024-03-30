@@ -32,7 +32,6 @@ const repositories = [{ provide: SongsService }, { provide: HymnsService }];
     SharedModule,
     AppRoutingModule,
     BrowserModule,
-
     SocialLoginModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', {

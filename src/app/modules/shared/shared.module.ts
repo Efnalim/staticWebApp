@@ -52,6 +52,25 @@ import { LoginComponent } from 'src/app/components/login/login.component';
     CommonModule,
   ],
 
-  exports: [SongsListComponent, LoginComponent],
+  exports: [
+    SongsListComponent, 
+    LoginComponent,
+    MatBadgeModule,
+    MatButtonModule,
+    MatCardModule,
+    MatListModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatDividerModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
+  ],
 })
 export class SharedModule {}

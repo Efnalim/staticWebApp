@@ -19,6 +19,13 @@ const menuItems: MenuItem[] = [
     openNewTab: false,
     newFeature: localStorage.getItem("hymns") === null
   },
+  {
+    title: "Zpravodaj",
+    icon: "calendar_today",
+    url: "/newsletter",
+    openNewTab: false,
+    newFeature: false
+  }
 ]
 
 const title: string = "Chvály"

@@ -20,6 +20,13 @@ const menuItems: MenuItem[] = [
     openNewTab: false,
     newFeature: false
   },
+  {
+    title: "Zpravodaj",
+    icon: "calendar_today",
+    url: "/newsletter",
+    openNewTab: false,
+    newFeature: false
+  }
 ]
 
 const mode: SongType = SongType.HYMNS

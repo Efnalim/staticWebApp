@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: 'songs', loadChildren: () => import('./modules/songs/songs.module').then(mod => mod.SongsModule)},
+  { path: 'newsletter', loadChildren: () => import('./modules/newsletter/newsletter.module').then(mod => mod.NewsletterModule)},
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'songs', pathMatch: 'full'}
 ];
