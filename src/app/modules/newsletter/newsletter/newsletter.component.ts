@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'src/app/model/menu';
 
 const menuItems: MenuItem[] = [
@@ -25,9 +25,13 @@ const title: string = "Zpravodaj"
   templateUrl: './newsletter.component.html',
   styleUrls: ['./newsletter.component.css']
 })
-export class NewsletterComponent {
+export class NewsletterComponent implements OnInit {
   public title: string = title;
   public menuItems = menuItems;
+
+  ngOnInit(): void {
+    localStorage.setItem("newsletter", "seen");
+  }
   
   itemHasNewFeature(item: MenuItem): boolean {
     return item.newFeature;

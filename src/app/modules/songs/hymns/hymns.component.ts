@@ -25,7 +25,7 @@ const menuItems: MenuItem[] = [
     icon: "calendar_today",
     url: "/newsletter",
     openNewTab: false,
-    newFeature: false
+    newFeature: localStorage.getItem("newsletter") === null
   }
 ]
 
