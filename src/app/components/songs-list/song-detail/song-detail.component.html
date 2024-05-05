@@ -18,7 +18,7 @@
             <mat-label>Číslo</mat-label>
             <input matInput placeholder="Číslo" [(ngModel)]="song.songNumber" [disabled]="!isEditting">
         </mat-form-field> -->
-        <mat-list role="list" style="max-height: 200px;">
+        <mat-list role="list" style="max-height: 250px; overflow: scroll;">
             <h3 mat-subheader style="position: relative;">Hráno<span style="margin-left: 52px;">hudebník</span> 
                 <button class="center-icon" mat-icon-button (click)="addRecord()" style="float: right; cursor: pointer;" *ngIf="isEditting">
                     <mat-icon color="primary">add</mat-icon>
