@@ -3,30 +3,8 @@ import { MenuItem } from './../../../model/menu'
 import { firstValueFrom } from 'rxjs';
 import { SongsService } from 'src/app/services/songs.service';
 import { Song } from 'src/app/model/song';
+import { MenuService } from 'src/app/services/menu.service';
 
-const menuItems: MenuItem[] = [
-  {
-    title: "Nápověda",
-    icon: "question_mark",
-    url: "https://app.tango.us/app/workflow/Jak-p-idat-z-znam-o-hran--p-sn--a57c8ab78e5349d999887b29cc01555b",
-    openNewTab: true,
-    newFeature: false
-  },
-  {
-    title: "Bratrské písně",
-    icon: "menu_book",
-    url: "/songs/hymns",
-    openNewTab: false,
-    newFeature: localStorage.getItem("hymns") === null
-  },
-  {
-    title: "Zpravodaj",
-    icon: "calendar_today",
-    url: "/newsletter",
-    openNewTab: false,
-    newFeature: localStorage.getItem("newsletter") === null
-  }
-]
 
 const title: string = "Chvály"
 
@@ -39,14 +17,22 @@ export class WorshipSongsComponent implements OnInit{
   
   public worshipSongs: Song[] = [];
   public title: string = title;
-  public menuItems = menuItems;
+  public menuItems: MenuItem[] = [];
 
   constructor(
     private songsOp: SongsService,
+    private menuService: MenuService
   ) {}
   
   ngOnInit(): void {
-    console.log("worship-songs");
+    this.menuItems = this.menuService.getMenuItems().filter(item => item.title !== this.title);
+    this.menuItems.push({
+      title: "Nápověda",
+      icon: "question_mark",
+      url: "https://app.tango.us/app/workflow/Jak-p-idat-z-znam-o-hran--p-sn--a57c8ab78e5349d999887b29cc01555b",
+      openNewTab: true,
+      newFeature: false
+    })
     this.fetchData();
   }
 

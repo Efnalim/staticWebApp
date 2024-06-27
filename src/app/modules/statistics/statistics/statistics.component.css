@@ -1,0 +1,45 @@
+.container {
+  max-width: 100vw;
+}
+img {
+  max-width: 100vw;
+}
+
+.legend {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.legend span{
+  padding: 2px;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.legend span:nth-child(1) {
+  background-color: rgb(53, 122, 195);
+}
+.legend span:nth-child(2) {
+  background-color: rgb(240, 211, 51);
+}
+.legend span:nth-child(3) {
+  background-color: rgb(50, 168, 78);
+}
+.legend span:nth-child(4) {
+  background-color: tomato;
+}
+.legend span:nth-child(5) {
+  background-color: rgb(156, 155, 155);
+}
+
+.recordInYear {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr)
+}
+
+.recordInYear div {
+  margin: 2px 2px;
+  text-align: center;
+  border-radius: 4px;
+} 
