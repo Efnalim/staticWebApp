@@ -40,7 +40,7 @@
                 </span>
                 <span *ngIf="isEditting" [matMenuTriggerFor]="menu" style="cursor: pointer; position: absolute; margin-left: 96px;">
                     {{ (record.performer === undefined) ? "neuvedeno" : record.performer }}
-                    <mat-icon style="font-size: 16px;" [inline]="true">edit</mat-icon>
+                    <mat-icon style="font-size: 16px; position: absolute; top: -5px;" [inline]="true">edit</mat-icon>
                 </span>
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item *ngFor="let performer of performers" (click)="setPerformerOfRecord(record, performer)">{{ performer }}</button>
