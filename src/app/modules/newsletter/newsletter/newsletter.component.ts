@@ -36,4 +36,15 @@ export class NewsletterComponent implements OnInit {
   itemHasNewFeature(item: MenuItem): boolean {
     return item.newFeature;
   }
+
+  getNewsletterImage(numberImg: number): string {
+    return "assets/images/newsletter/Zpravodaj_" + this.getCurrentMonthNumberAs2charString() + "_" + new Date().getFullYear().toString().slice(2) + "-" + numberImg + ".png"
+  }
+
+  getCurrentMonthNumberAs2charString(): string {
+    let currentMonthNumber = new Date().getMonth() + 1;
+    if (currentMonthNumber < 10)
+      return "0" + currentMonthNumber
+    return currentMonthNumber.toString();
+  }
 }
