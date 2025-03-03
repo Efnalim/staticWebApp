@@ -92,8 +92,9 @@ export class SongDetailComponent {
   }
 
   saveRecord(): void {
+    // const mostFrequentPerformer = this.song.records.
     this.song.records = sortRecords(
-      [{ date: this.newRecord, performer: undefined }, ...this.song.records].map(
+      [{ date: this.newRecord, performer: this.getMostFrequentPerformer() }, ...this.song.records].map(
         (record: any) => {
           return { date: new Date(record.date), performer: record.performer };
         }
@@ -112,5 +113,20 @@ export class SongDetailComponent {
     performer: string
   ) {
     record.performer = performer;
+  }
+
+  getMostFrequentPerformer(): string | undefined {
+    if (this.song.records.length === 0) return undefined;
+  
+    const frequencyMap: Record<string, number> = {};
+  
+    this.song.records.forEach(record => {
+      frequencyMap[record.performer] = (frequencyMap[record.performer] || 0) + 1;
+    });
+  
+    // Find the performer with the max count
+    return Object.keys(frequencyMap).reduce((maxPerformer, performer) =>
+      frequencyMap[performer] > (frequencyMap[maxPerformer] || 0) ? performer : maxPerformer
+    );
   }
 }
