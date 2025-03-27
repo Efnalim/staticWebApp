@@ -1,24 +1,21 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { AppComponent } from './app.component';
 
-import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { SharedModule } from './modules/shared/shared.module';
-import { SongsService } from './services/songs.service';
 import { CommonModule } from '@angular/common';
-import { AppRoutingModule } from './app-routing.module';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './modules/shared/shared.module';
 import { HymnsService } from './services/hymns.service';
+import { SongsService } from './services/songs.service';
 
 import {
-  SocialLoginModule,
-  SocialAuthServiceConfig,
-} from '@abacritt/angularx-social-login';
-import {
   GoogleLoginProvider,
-  FacebookLoginProvider,
+  SocialAuthServiceConfig,
+  SocialLoginModule,
 } from '@abacritt/angularx-social-login';
 
 const repositories = [{ provide: SongsService }, { provide: HymnsService }];

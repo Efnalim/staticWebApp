@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.heeding12 {
+  color: red;
+}
+
+.example-full-width {
+  width: 45%;
+  margin: 0 2.5%;
+}
+
+::ng-deep .mat-mdc-list-item-unscoped-content {
+  display: flex;
+}
+
+mat-list-item {
+  border-top: solid 1px rgb(192, 192, 192);
+}

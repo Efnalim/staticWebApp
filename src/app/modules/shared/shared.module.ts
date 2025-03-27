@@ -22,6 +22,7 @@ import { SongDetailComponent } from 'src/app/components/songs-list/song-detail/s
 import { SongsListComponent } from 'src/app/components/songs-list/songs-list.component';
 import { MomentPipe } from 'src/app/pipes/moment.pipe';
 import { LoginComponent } from 'src/app/components/login/login.component';
+import { ListHeaderComponent } from 'src/app/components/list-header/list-header.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { LoginComponent } from 'src/app/components/login/login.component';
     CreateSongComponent,
     SongDetailComponent,
     ConfirmationComponent,
+    ListHeaderComponent,
     LoginComponent,
     MomentPipe,
   ],
@@ -54,6 +56,7 @@ import { LoginComponent } from 'src/app/components/login/login.component';
 
   exports: [
     SongsListComponent, 
+    ListHeaderComponent,
     LoginComponent,
     MatBadgeModule,
     MatButtonModule,
