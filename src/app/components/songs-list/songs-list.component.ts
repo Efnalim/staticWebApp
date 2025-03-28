@@ -17,7 +17,6 @@ import {
 } from 'src/app/model/song';
 // import { CreateSongComponent } from './create-song/create-song.component';
 import { SongDetailComponent } from './song-detail/song-detail.component';
-import { CreateSongComponent } from './create-song/create-song.component';
 
 @Component({
   selector: 'songs-list',
@@ -55,22 +54,6 @@ export class SongsListComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.sortedSongs = this.songs.slice();
-  }
-
-  click(): void {
-    let dialogRef = this.dialog.open(CreateSongComponent, {
-      width: '250px',
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if(result) {
-        this.reloadRequest.next(true);
-      }
-    });
-  }
-
-  sendReloadRequest(): void {
-    this.reloadRequest.next(true);
   }
 
   getNewestDate(song: Song): string {

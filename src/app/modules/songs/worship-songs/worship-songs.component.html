@@ -1,1 +1,31 @@
-<songs-list [songs]="worshipSongs" [title]="title" [menuItems]="menuItems" (reloadRequest)="fetchData()"></songs-list>
+<mat-card class="example-card">
+    <mat-card-header style="justify-content: space-between">
+      <app-list-header
+        [title]="title"
+        [menuItems]="menuItems"
+        (reloadRequest)="fetchData()"
+      >
+        <button (click)="click()" mat-menu-item>
+          <mat-icon>add</mat-icon>
+          Nová píseň
+        </button>
+      </app-list-header>
+    </mat-card-header>
+    <mat-divider style="margin-top: 0.5rem"></mat-divider>
+    <mat-card-content
+      style="
+        padding-top: 16px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      "
+    >
+      <songs-list
+        [songs]="worshipSongs"
+        [title]="title"
+        [menuItems]="menuItems"
+        (reloadRequest)="fetchData()"
+      ></songs-list>
+    </mat-card-content>
+  </mat-card>
+  

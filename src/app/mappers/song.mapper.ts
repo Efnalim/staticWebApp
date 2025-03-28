@@ -25,6 +25,14 @@ export class SongMapper {
             const compareDateValue = compareDate.getTime();
             retVal.playedThisYearTimes = retVal.records.filter((record) => record.date.getTime() > compareDateValue).length;
         }
+
+        let rehearsers = new Set<string>();
+        retVal.records.forEach(record => {
+            if (record.date.getFullYear() < 2022) {
+                rehearsers.add(record.performer)
+            }
+        })
+        retVal.rehearsers = Array.from(rehearsers);
         return retVal;
     }
 

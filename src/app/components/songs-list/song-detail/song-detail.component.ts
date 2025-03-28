@@ -20,6 +20,7 @@ import { HymnsService } from 'src/app/services/hymns.service';
 export class SongDetailComponent {
   public isEditting: boolean = false;
   public isAddingRecord: boolean = false;
+  public showOnlyRehearsals = false;
 
   public mode: SongType = SongType.WORSHIP_SONGS;
 
@@ -28,6 +29,7 @@ export class SongDetailComponent {
   public newRecord: Date = new Date();
 
   public performers: string[] = [];
+  public potentialRehearsers: string[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<SongDetailComponent>,
@@ -43,6 +45,10 @@ export class SongDetailComponent {
       this.performers = worshipSongsPerformers;
     } else if (this.mode === SongType.HYMNS) {
       this.performers = hymnsPerformers;
+      this.potentialRehearsers = this.performers.slice()
+      this.song.rehearsers.forEach(performer => {
+        this.potentialRehearsers = this.potentialRehearsers.filter(rehearser => rehearser !== performer)
+      })
     }
   }
 
@@ -85,6 +91,24 @@ export class SongDetailComponent {
 
   addRecord(): void {
     this.isAddingRecord = true;
+    this.isEditting = true;
+  }
+  
+  addRehearser(rehearser: string): void {
+    this.song.rehearsers.push(rehearser)
+    this.potentialRehearsers = this.potentialRehearsers.filter(potentialRehearser => potentialRehearser !== rehearser)
+    this.isEditting = true;
+    this.song.records = sortRecords(
+      [{ date: new Date(2021, 0, 1), performer: rehearser }, ...this.song.records].map(
+        (record: any) => {
+          return { date: new Date(record.date), performer: record.performer };
+        }
+      )
+    );
+  }
+
+  onAction(option: string) {
+    console.log('Selected:', option);
   }
 
   removeRecord(idx: number): void {

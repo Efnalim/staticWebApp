@@ -12,10 +12,6 @@
 </button>
 <mat-menu #menu="matMenu">
   <ng-content></ng-content>
-  <!-- <button (click)="click()" mat-menu-item *ngIf="mode !== 'hymns'">
-    <mat-icon>add</mat-icon>
-    Nová píseň
-  </button> -->
   <a
     *ngFor="let item of menuItems"
     href="{{ item.url }}"

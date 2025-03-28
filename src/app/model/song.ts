@@ -6,6 +6,7 @@ export class Song {
         this.songNumber = "";
         this.newestRecordDate;
         this.records = [];
+        this.rehearsers = [];
         this.playedThisYearTimes = 0;
         this.type = SongType.WORSHIP_SONGS;
     }
@@ -16,6 +17,7 @@ export class Song {
     newestRecordDate: Date | undefined;
     playedThisYearTimes: number;
     type: SongType;
+    rehearsers: string[];
     records: {
         date: Date;
         performer: string;

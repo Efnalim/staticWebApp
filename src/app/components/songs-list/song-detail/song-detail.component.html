@@ -1,69 +1,154 @@
-<mat-card style="padding: 0.5rem; min-height: 200px; display: flex;">
-    <mat-card-header style="justify-content: space-between">
-        <mat-card-title>Detail písně</mat-card-title>
-        <mat-slide-toggle
-            color="primary"
-            [checked]="isEditting"
-            [(ngModel)]="isEditting">
-            Upravit
-        </mat-slide-toggle>
-    </mat-card-header>
-    <mat-card-content style="padding: 16px 4px; flex-grow: 1;">
+<mat-card style="padding: 0.5rem; min-height: 200px; display: flex">
+  <mat-card-header style="justify-content: space-between">
+    <mat-card-title>Detail písně</mat-card-title>
+    <mat-slide-toggle
+      color="primary"
+      [checked]="isEditting"
+      [(ngModel)]="isEditting"
+    >
+      Upravit
+    </mat-slide-toggle>
+  </mat-card-header>
+  <mat-card-content style="padding: 16px 4px; flex-grow: 1">
     <mat-divider></mat-divider>
-        <mat-form-field class="example-full-width">
-            <mat-label>Název</mat-label>
-            <input matInput placeholder="Název" [(ngModel)]="song.songName" [disabled]="!isEditting">
-        </mat-form-field>
-        <!-- <mat-form-field class="example-full-width">
-            <mat-label>Číslo</mat-label>
-            <input matInput placeholder="Číslo" [(ngModel)]="song.songNumber" [disabled]="!isEditting">
-        </mat-form-field> -->
-        <mat-list role="list" style="max-height: 250px; overflow: scroll;">
-            <h3 mat-subheader style="position: relative;">Hráno<span style="margin-left: 52px;">hudebník</span> 
-                <button class="center-icon" mat-icon-button (click)="addRecord()" style="float: right; cursor: pointer;" *ngIf="isEditting">
-                    <mat-icon color="primary">add</mat-icon>
-                </button>
-            </h3>
-            <mat-form-field *ngIf="isAddingRecord && isEditting ">
-                <input matInput [matDatepicker]="picker" [(ngModel)]="newRecord">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-                <mat-icon (click)="saveRecord()" mat-raised-button color="primary" 
-                    style="float: right; cursor: pointer; position: absolute; right: 0px;">
-                    check
-                </mat-icon>
-              </mat-form-field>
-            <mat-list-item role="listitem" style="height: unset; position: relative;" *ngFor="let record of song.records; let i = index">
-                {{ record.date | dateFormat:'D.M. YYYY'}}  
-                <span *ngIf="!isEditting" style="position: absolute; margin-left: 96px;">
-                    {{ (record.performer === undefined) ? "neuvedeno" : record.performer }}
-                </span>
-                <span *ngIf="isEditting" [matMenuTriggerFor]="menu" style="cursor: pointer; position: absolute; margin-left: 96px;">
-                    {{ (record.performer === undefined) ? "neuvedeno" : record.performer }}
-                    <mat-icon style="font-size: 16px; position: absolute; top: -5px;" [inline]="true">edit</mat-icon>
-                </span>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item *ngFor="let performer of performers" (click)="setPerformerOfRecord(record, performer)">{{ performer }}</button>
-                </mat-menu>
-                <button class="center-icon" mat-icon-button (click)="removeRecord(i)" style="position: absolute; right: 16px; cursor: pointer;" *ngIf="isEditting">
-                    <mat-icon color="warn">close</mat-icon>
-                </button>
-            </mat-list-item>
-        </mat-list>
-    </mat-card-content>
-    <mat-card-footer style="padding: 0.5rem;">
-        <!-- <button (click)="onDelete()" mat-raised-button color="warn" style="float: left;" hidden [hidden]="!isEditting"> -->
-        <button (click)="onDelete()" mat-raised-button color="warn" style="float: left;" hidden>
-            <mat-icon>delete_forever</mat-icon>
-            Smazat
+    <mat-form-field class="example-full-width">
+      <mat-label>Název</mat-label>
+      <input
+        matInput
+        placeholder="Název"
+        [(ngModel)]="song.songName"
+        [disabled]="!isEditting"
+      />
+    </mat-form-field>
+    <mat-list role="list" style="max-height: 250px" *ngIf="mode === 'hymns'">
+      <h3 mat-subheader style="position: relative">
+        Nacvičující
+        <button
+          mat-raised-button
+          color="primary"
+          style="float: right"
+          [matMenuTriggerFor]="menu"
+        >
+          <mat-icon>add</mat-icon>
+          přidat nacvičujícího
         </button>
-        <button (click)="onClose()" mat-raised-button color="accent" style="float: right;" [hidden]="isEditting">
-            <mat-icon>arrow_back</mat-icon>
-            Zpět
+        <mat-menu #menu="matMenu">
+          <button
+            *ngFor="let rehearser of potentialRehearsers"
+            mat-menu-item
+            (click)="addRehearser(rehearser)"
+          >
+            {{ rehearser }}
+          </button>
+        </mat-menu>
+      </h3>
+      <mat-list-item
+        role="listitem"
+        style="height: unset; position: relative"
+        *ngFor="let rehearser of song.rehearsers"
+      >
+        {{ rehearser }}
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+    <mat-list role="list" style="max-height: 250px; overflow-y: scroll">
+      <h3 mat-subheader style="position: relative">
+        Hráno<span style="margin-left: 52px">hudebník</span>
+        <button
+          class="center-icon"
+          mat-icon-button
+          (click)="addRecord()"
+          style="float: right; cursor: pointer"
+        >
+          <mat-icon color="primary">add</mat-icon>
         </button>
-        <button (click)="onSave()" mat-raised-button color="primary" style="float: right;" [hidden]="!isEditting">
-            <mat-icon>save</mat-icon>
-            Uložit
+      </h3>
+      <mat-form-field *ngIf="isAddingRecord && isEditting">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="newRecord" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-icon
+          (click)="saveRecord()"
+          mat-raised-button
+          color="primary"
+          style="float: right; cursor: pointer; position: absolute; right: 0px"
+        >
+          check
+        </mat-icon>
+      </mat-form-field>
+      <mat-list-item
+        role="listitem"
+        style="height: unset; position: relative"
+        *ngFor="let record of song.records; let i = index"
+      >
+        {{ record.date | dateFormat : "D.M. YYYY" }}
+        <span *ngIf="!isEditting" style="position: absolute; margin-left: 96px">
+          {{ record.performer === undefined ? "neuvedeno" : record.performer }}
+        </span>
+        <span
+          *ngIf="isEditting"
+          [matMenuTriggerFor]="menu"
+          style="cursor: pointer; position: absolute; margin-left: 96px"
+        >
+          {{ record.performer === undefined ? "neuvedeno" : record.performer }}
+          <mat-icon
+            style="font-size: 16px; position: absolute; top: -5px"
+            [inline]="true"
+            >edit</mat-icon
+          >
+        </span>
+        <mat-menu #menu="matMenu">
+          <button
+            mat-menu-item
+            *ngFor="let performer of performers"
+            (click)="setPerformerOfRecord(record, performer)"
+          >
+            {{ performer }}
+          </button>
+        </mat-menu>
+        <button
+          class="center-icon"
+          mat-icon-button
+          (click)="removeRecord(i)"
+          style="position: absolute; right: 16px; cursor: pointer"
+          *ngIf="isEditting"
+        >
+          <mat-icon color="warn">close</mat-icon>
         </button>
-    </mat-card-footer>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-footer style="padding: 0.5rem">
+    <!-- <button (click)="onDelete()" mat-raised-button color="warn" style="float: left;" hidden [hidden]="!isEditting"> -->
+    <button
+      (click)="onDelete()"
+      mat-raised-button
+      color="warn"
+      style="float: left"
+      hidden
+    >
+      <mat-icon>delete_forever</mat-icon>
+      Smazat
+    </button>
+    <button
+      (click)="onClose()"
+      mat-raised-button
+      color="accent"
+      style="float: right"
+      [hidden]="isEditting"
+    >
+      <mat-icon>arrow_back</mat-icon>
+      Zpět
+    </button>
+    <button
+      (click)="onSave()"
+      mat-raised-button
+      color="primary"
+      style="float: right"
+      [hidden]="!isEditting"
+    >
+      <mat-icon>save</mat-icon>
+      Uložit
+    </button>
+  </mat-card-footer>
 </mat-card>

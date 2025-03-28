@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -17,13 +18,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { ConfirmationComponent } from 'src/app/components/dialog/confirmation/confirmation.component';
+import { ListHeaderComponent } from 'src/app/components/list-header/list-header.component';
+import { LoginComponent } from 'src/app/components/login/login.component';
 import { CreateSongComponent } from 'src/app/components/songs-list/create-song/create-song.component';
 import { SongDetailComponent } from 'src/app/components/songs-list/song-detail/song-detail.component';
 import { SongsListComponent } from 'src/app/components/songs-list/songs-list.component';
 import { MomentPipe } from 'src/app/pipes/moment.pipe';
-import { LoginComponent } from 'src/app/components/login/login.component';
-import { ListHeaderComponent } from 'src/app/components/list-header/list-header.component';
-
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import { ListHeaderComponent } from 'src/app/components/list-header/list-header.
     MatBadgeModule,
     MatButtonModule,
     MatCardModule,
+    MatCheckboxModule,
     MatListModule,
     MatIconModule,
     MatInputModule,
@@ -55,12 +56,13 @@ import { ListHeaderComponent } from 'src/app/components/list-header/list-header.
   ],
 
   exports: [
-    SongsListComponent, 
+    SongsListComponent,
     ListHeaderComponent,
     LoginComponent,
     MatBadgeModule,
     MatButtonModule,
     MatCardModule,
+    MatCheckboxModule,
     MatListModule,
     MatIconModule,
     MatInputModule,
