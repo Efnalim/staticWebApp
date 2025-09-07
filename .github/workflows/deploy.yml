@@ -24,6 +24,9 @@ jobs:
       - name: Build Angular app
         run: npm run build:github
 
+      - name: Copy index.html to 404.html
+        run: cp dist/index.html dist/404.html
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
