@@ -29,3 +29,4 @@ jobs:
         with:
           branch: gh-pages           # Target branch
           folder: dist  # Path to the Angular build output
+          token: ${{ secrets.GITHUB_TOKEN }}
