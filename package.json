@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build-prod": "ng build --output-hashing=all",
-    "build-prod-render": "ng build --output-path=dist/web --output-hashing=all && cp static.json dist",
+    "build-prod-render": "ng build --output-path=dist/web --output-hashing=all && cp static.json dist/web",
     "prebuild:github": "cp src/index.github.html src/index.html",
     "build:github": "npm run prebuild:github && ng build --configuration production_github --base-href /staticWebApp/ ",
     "create": "ng g c modules/songs/worship-songs",
