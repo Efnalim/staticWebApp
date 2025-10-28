@@ -54,6 +54,8 @@ export class SongsListComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.sortedSongs = this.songs.slice();
+    this.sortSongsByDate();
+    this.sortedSongs.reverse();
   }
 
   getNewestDate(song: Song): string {
