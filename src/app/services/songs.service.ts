@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Song } from '../model/song';
 import { SongMapper } from '../mappers/song.mapper';
-
+import { environment } from 'src/environments/environment';
 @Injectable()
 export class SongsService {
-  ROOT_URL =
-    'https://eu-central-1.aws.data.mongodb-api.com/app/songapiapp-cehyq/endpoint/songs';
+  ROOT_URL = `${environment.apiUrl}/songs`;
   private mapper: SongMapper;
 
   constructor(private http: HttpClient) {

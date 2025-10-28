@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Song, SongType } from '../model/song';
 import { SongMapper } from '../mappers/song.mapper';
-
+import { environment } from 'src/environments/environment';
 @Injectable()
 export class HymnsService {
-  ROOT_URL =
-    'https://eu-central-1.aws.data.mongodb-api.com/app/songapiapp-cehyq/endpoint/hymns';
+  ROOT_URL = `${environment.apiUrl}/hymns`;
   private mapper: SongMapper;
 
   constructor(private http: HttpClient) {
@@ -20,25 +19,17 @@ export class HymnsService {
         response
           .map((song: any) => this.mapper.mapToDomain(song))
           .map((song: Song) => {
-            song.type = SongType.HYMNS
-            return song
+            song.type = SongType.HYMNS;
+            return song;
           })
           .sort((a: Song, b: Song) => {
-            if (
-              a.songNumber == undefined
-            ) return true;
-            if (
-              b.songNumber == undefined 
-            ) return false;
+            if (a.songNumber == undefined) return true;
+            if (b.songNumber == undefined) return false;
             return Number(a.songNumber) < Number(b.songNumber);
           })
           .sort((a: Song, b: Song) => {
-            if (
-              a.newestRecordDate == undefined
-            ) return true;
-            if (
-              b.newestRecordDate == undefined 
-            ) return false;
+            if (a.newestRecordDate == undefined) return true;
+            if (b.newestRecordDate == undefined) return false;
             return a.newestRecordDate.getTime() < b.newestRecordDate.getTime();
           })
       )
@@ -52,20 +43,24 @@ export class HymnsService {
   }
 
   public updateSong(song: Song): Observable<JSON[]> {
-    return this.http
-      .put<JSON[]>(`${this.ROOT_URL}`, this.mapSongToUpdateSongDTO(song));
+    return this.http.put<JSON[]>(
+      `${this.ROOT_URL}`,
+      this.mapSongToUpdateSongDTO(song)
+    );
   }
 
   public deleteSong(song: Song): Observable<JSON[]> {
-    return this.http
-      .put<JSON[]>(`${this.ROOT_URL}`, { delete: true, _id: song.id });
+    return this.http.put<JSON[]>(`${this.ROOT_URL}`, {
+      delete: true,
+      _id: song.id,
+    });
   }
 
   private mapSongToCreateSongDTO(song: Song): CreateSongDTO {
     let dto = new CreateSongDTO();
     dto.name = song.songName;
     dto.number = song.songNumber;
-    dto.records = []
+    dto.records = [];
     return dto;
   }
 
@@ -75,7 +70,9 @@ export class HymnsService {
     dto.name = song.songName;
     dto.number = song.songNumber;
 
-    dto.records = song.records.map(rec => {return {date: rec.date, performer: rec.performer}})
+    dto.records = song.records.map((rec) => {
+      return { date: rec.date, performer: rec.performer };
+    });
     return dto;
   }
 }
@@ -96,7 +93,7 @@ class CreateSongDTO {
 
 class UpdateSongDTO {
   constructor() {
-    this._id = ''
+    this._id = '';
     this.name = '';
     this.number = '';
     this.records = [];
