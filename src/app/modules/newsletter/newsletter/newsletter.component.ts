@@ -1,22 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'src/app/model/menu';
-
-const menuItems: MenuItem[] = [
-  {
-    title: "Bratrské písně",
-    icon: "menu_book",
-    url: "/songs/hymns",
-    openNewTab: false,
-    newFeature: localStorage.getItem("hymns") === null
-  },
-  {
-    title: "Chvály",
-    icon: "music_note",
-    url: "/songs/worship",
-    openNewTab: false,
-    newFeature: false
-  }
-]
+import { MenuService } from 'src/app/services/menu.service';
 
 const title: string = "Zpravodaj"
 
@@ -27,10 +11,17 @@ const title: string = "Zpravodaj"
 })
 export class NewsletterComponent implements OnInit {
   public title: string = title;
-  public menuItems = menuItems;
+  public menuItems: MenuItem[] = [];
+  
+  constructor(
+    private menuService: MenuService
+  ) { }
 
   ngOnInit(): void {
     localStorage.setItem("newsletter", "seen");
+    this.menuItems = this.menuService
+      .getMenuItems()
+      .filter((item) => item.title !== this.title);
   }
   
   itemHasNewFeature(item: MenuItem): boolean {
