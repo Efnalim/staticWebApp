@@ -26,6 +26,8 @@
         [menuItems]="menuItems"
         (reloadRequest)="fetchData()"
       ></songs-list>
+      <mat-spinner *ngIf="fetchingData" style="margin: 0 auto;"></mat-spinner>
+      <span *ngIf="errorMessage" style="margin: 0 auto; color: red;">{{errorMessage}}</span>
     </mat-card-content>
   </mat-card>
   

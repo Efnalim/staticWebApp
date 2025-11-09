@@ -20,6 +20,8 @@ export class HymnsComponent implements OnInit {
   public mode = mode;
   public menuItems: MenuItem[] = [];
   public showOnlyRehearsed = false;
+  public fetchingData: boolean = false;
+  public errorMessage: string | undefined = undefined;
 
   constructor(
     private songsOp: HymnsService,
@@ -35,7 +37,10 @@ export class HymnsComponent implements OnInit {
   }
 
   async fetchData() {
+    console.log("fetching data");
+    
     try {
+      this.fetchingData = true;
       this.hymns = await firstValueFrom(this.songsOp.getAllSongs());
       if (this.showOnlyRehearsed) {
         this.hymns = this.hymns.filter((song) =>
@@ -44,6 +49,9 @@ export class HymnsComponent implements OnInit {
       }
     } catch (err) {
       console.error(err);
+      this.errorMessage = "Při načítání dat dolšo k chybě!"
+    } finally {
+      this.fetchingData = false;
     }
   }
 

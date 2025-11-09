@@ -18,6 +18,8 @@ export class WorshipSongsComponent implements OnInit {
   public worshipSongs: Song[] = [];
   public title: string = title;
   public menuItems: MenuItem[] = [];
+  public fetchingData: boolean = false;
+  public errorMessage: string | undefined = undefined;
 
   constructor(
     private songsOp: SongsService,
@@ -41,9 +43,13 @@ export class WorshipSongsComponent implements OnInit {
 
   async fetchData() {
     try {
+      this.fetchingData = true;
       this.worshipSongs = await firstValueFrom(this.songsOp.getAllSongs());
     } catch (err) {
       console.error(err);
+      this.errorMessage = "Při načítání dat dolšo k chybě!"
+    } finally {
+      this.fetchingData = false;
     }
   }
 

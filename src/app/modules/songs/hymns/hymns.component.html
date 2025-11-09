@@ -22,11 +22,13 @@
       >Pouze nacvičované</mat-checkbox
     >
     <songs-list
-      [songs]="hymns"
-      [title]="title"
-      [menuItems]="menuItems"
-      [mode]="mode"
-      (reloadRequest)="fetchData()"
+    [songs]="hymns"
+    [title]="title"
+    [menuItems]="menuItems"
+    [mode]="mode"
+    (reloadRequest)="fetchData()"
     ></songs-list>
+    <mat-spinner *ngIf="fetchingData" style="margin: 0 auto;"></mat-spinner>
+    <span *ngIf="errorMessage" style="margin: 0 auto; color: red;">{{errorMessage}}</span>
   </mat-card-content>
 </mat-card>
