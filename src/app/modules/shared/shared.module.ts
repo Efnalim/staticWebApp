@@ -79,6 +79,7 @@ import { MomentPipe } from 'src/app/pipes/moment.pipe';
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
+    MomentPipe
   ],
 })
 export class SharedModule {}

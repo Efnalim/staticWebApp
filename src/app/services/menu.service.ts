@@ -18,10 +18,17 @@ const menuItems: MenuItem[] = [
   },
   {
     title: "Zpravodaj",
-    icon: "calendar_today",
+    icon: "book",
     url: "/newsletter",
     openNewTab: false,
     newFeature: localStorage.getItem("newsletter") === null
+  },
+  {
+    title: "Oznámení",
+    icon: "calendar_today",
+    url: "/announcements",
+    openNewTab: false,
+    newFeature: localStorage.getItem("announcements") === null
   },
   {
     title: "Statistika",

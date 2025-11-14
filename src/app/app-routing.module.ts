@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: 'statistics', loadChildren: () => import('./modules/statistics/statistics.module').then(mod => mod.StatisticsModule)},
   { path: 'songs', loadChildren: () => import('./modules/songs/songs.module').then(mod => mod.SongsModule)},
   { path: 'newsletter', loadChildren: () => import('./modules/newsletter/newsletter.module').then(mod => mod.NewsletterModule)},
+  { path: 'announcements', loadChildren: () => import('./modules/announcements/announcements.module').then(mod => mod.AnnouncementsModule)},
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'songs', pathMatch: 'full'}
 ];
