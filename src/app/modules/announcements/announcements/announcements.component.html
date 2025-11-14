@@ -28,13 +28,13 @@
             width: 50%;
             overflow: hidden;
             margin-right: 2%;
-            text-overflow: ellipsis;
+            white-space: break-spaces;
           "
         >
           {{ event.summary }}
         </div>
         <div style="width: 30%">
-          {{ event.start | dateFormat : "D.M.  h:mm"}}
+          {{ event.start | dateFormat : "D.M.  H:mm"}}
         </div>
       </mat-list-item>
     </mat-list>
