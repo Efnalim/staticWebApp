@@ -1,28 +1,39 @@
 <mat-card-title>
   {{ title }}
 </mat-card-title>
-<button
+<div>
+  <a
+    mat-icon-button
+    href="{{ menuItems[0].url }}"
+    [attr.target]="menuItems[0].openNewTab ? '_blank' : null"
+    >
+    <mat-icon>
+      {{ menuItems[0].icon }}
+    </mat-icon>
+  </a>
+  <button
   mat-icon-button
   [matMenuTriggerFor]="menu"
   aria-label="Example icon-button with a menu"
   matBadge="{{ menuItems.some(itemHasNewFeature) ? '★' : null }}"
-  matBadgePosition="before"
->
-  <mat-icon>menu</mat-icon>
-</button>
-<mat-menu #menu="matMenu">
-  <ng-content></ng-content>
-  <a
+  matBadgePosition="after"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <ng-content></ng-content>
+    <a
     *ngFor="let item of menuItems"
     href="{{ item.url }}"
     [attr.target]="item.openNewTab ? '_blank' : null"
     mat-menu-item
-  >
+    >
     <mat-icon
-      matBadge="{{ item.newFeature ? '★' : null }}"
-      matBadgePosition="before"
-      >{{ item.icon }}</mat-icon
+    matBadge="{{ item.newFeature ? '★' : null }}"
+    matBadgePosition="before"
+    >{{ item.icon }}</mat-icon
     >
     {{ item.title }}
   </a>
-</mat-menu>
+  </mat-menu>
+</div>
