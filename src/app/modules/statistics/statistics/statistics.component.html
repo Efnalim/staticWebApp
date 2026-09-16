@@ -3,23 +3,29 @@
     <app-list-header
       [title]="title"
       [menuItems]="menuItems"
-    >
+      >
     </app-list-header>
   </mat-card-header>
   <mat-divider style="margin-top: 0.5rem;"></mat-divider>
   <mat-card-content style="padding-top: 16px; flex-grow: 1; display: flex; flex-direction: column;">
     <legend class="legend">
-        <span *ngFor="let perf of worshipSongsPerformers">{{perf}}</span>
-        <span>neuvedeno</span>
+      @for (perf of worshipSongsPerformers; track perf) {
+        <span>{{perf}}</span>
+      }
+      <span>neuvedeno</span>
     </legend>
-    <mat-card *ngFor="let year of records">
-      <mat-card-header>
-        <strong>{{year.year}}</strong>
-      </mat-card-header>
-      <mat-card-content class="recordInYear">
-        <div *ngFor="let record of year.records" [ngStyle]="{'background-color': getBackgroundColor(record.performer)}">
-          {{getDate(record.date)}}</div>
-      </mat-card-content>
-    </mat-card>
+    @for (year of records; track year) {
+      <mat-card>
+        <mat-card-header>
+          <strong>{{year.year}}</strong>
+        </mat-card-header>
+        <mat-card-content class="recordInYear">
+          @for (record of year.records; track record) {
+            <div [ngStyle]="{'background-color': getBackgroundColor(record.performer)}">
+            {{getDate(record.date)}}</div>
+          }
+        </mat-card-content>
+      </mat-card>
+    }
   </mat-card-content>
 </mat-card>

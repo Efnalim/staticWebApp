@@ -12,28 +12,29 @@
     </mat-icon>
   </a>
   <button
-  mat-icon-button
-  [matMenuTriggerFor]="menu"
-  aria-label="Example icon-button with a menu"
-  matBadge="{{ menuItems.some(itemHasNewFeature) ? '★' : null }}"
-  matBadgePosition="after"
-  >
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    aria-label="Example icon-button with a menu"
+    matBadge="{{ menuItems.some(itemHasNewFeature) ? '★' : null }}"
+    matBadgePosition="after"
+    >
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <ng-content></ng-content>
-    <a
-    *ngFor="let item of menuItems"
-    href="{{ item.url }}"
-    [attr.target]="item.openNewTab ? '_blank' : null"
-    mat-menu-item
-    >
-    <mat-icon
-    matBadge="{{ item.newFeature ? '★' : null }}"
-    matBadgePosition="before"
-    >{{ item.icon }}</mat-icon
-    >
-    {{ item.title }}
-  </a>
-  </mat-menu>
-</div>
+    @for (item of menuItems; track item) {
+      <a
+        href="{{ item.url }}"
+        [attr.target]="item.openNewTab ? '_blank' : null"
+        mat-menu-item
+        >
+        <mat-icon
+          matBadge="{{ item.newFeature ? '★' : null }}"
+          matBadgePosition="before"
+          >{{ item.icon }}</mat-icon
+          >
+          {{ item.title }}
+        </a>
+      }
+    </mat-menu>
+  </div>

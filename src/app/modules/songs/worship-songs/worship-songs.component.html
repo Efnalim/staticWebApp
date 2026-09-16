@@ -1,18 +1,18 @@
 <mat-card class="example-card">
-    <mat-card-header style="justify-content: space-between">
-      <app-list-header
-        [title]="title"
-        [menuItems]="menuItems"
-        (reloadRequest)="fetchData()"
+  <mat-card-header style="justify-content: space-between">
+    <app-list-header
+      [title]="title"
+      [menuItems]="menuItems"
+      (reloadRequest)="fetchData()"
       >
-        <button (click)="click()" mat-menu-item>
-          <mat-icon>add</mat-icon>
-          Nová píseň
-        </button>
-      </app-list-header>
-    </mat-card-header>
-    <mat-divider style="margin-top: 0.5rem"></mat-divider>
-    <mat-card-content
+      <button (click)="click()" mat-menu-item>
+        <mat-icon>add</mat-icon>
+        Nová píseň
+      </button>
+    </app-list-header>
+  </mat-card-header>
+  <mat-divider style="margin-top: 0.5rem"></mat-divider>
+  <mat-card-content
       style="
         padding-top: 16px;
         flex-grow: 1;
@@ -20,14 +20,17 @@
         flex-direction: column;
       "
     >
-      <songs-list
-        [songs]="worshipSongs"
-        [title]="title"
-        [menuItems]="menuItems"
-        (reloadRequest)="fetchData()"
-      ></songs-list>
-      <mat-spinner *ngIf="fetchingData" style="margin: 0 auto;"></mat-spinner>
-      <span *ngIf="errorMessage" style="margin: 0 auto; color: red;">{{errorMessage}}</span>
-    </mat-card-content>
-  </mat-card>
-  
+    <songs-list
+      [songs]="worshipSongs"
+      [title]="title"
+      [menuItems]="menuItems"
+      (reloadRequest)="fetchData()"
+    ></songs-list>
+    @if (fetchingData) {
+      <mat-spinner style="margin: 0 auto;"></mat-spinner>
+    }
+    @if (errorMessage) {
+      <span style="margin: 0 auto; color: red;">{{errorMessage}}</span>
+    }
+  </mat-card-content>
+</mat-card>
