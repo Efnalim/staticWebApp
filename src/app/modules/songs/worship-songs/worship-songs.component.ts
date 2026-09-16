@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem } from './../../../model/menu';
 import { firstValueFrom } from 'rxjs';
 import { SongsService } from 'src/app/services/songs.service';
@@ -13,6 +13,7 @@ const title: string = 'Chvály';
     selector: 'app-worship-songs',
     templateUrl: './worship-songs.component.html',
     styleUrls: ['./worship-songs.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class WorshipSongsComponent implements OnInit {

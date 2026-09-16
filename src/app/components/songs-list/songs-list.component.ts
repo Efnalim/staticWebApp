@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
   SimpleChanges,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MenuItem } from 'src/app/model/menu';
@@ -22,6 +23,7 @@ import { SongDetailComponent } from './song-detail/song-detail.component';
     selector: 'songs-list',
     templateUrl: './songs-list.component.html',
     styleUrls: ['./songs-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SongsListComponent implements OnInit, OnChanges {

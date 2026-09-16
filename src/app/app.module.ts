@@ -2,7 +2,7 @@ import { NgModule, isDevMode } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -54,6 +54,6 @@ const repositories = [{ provide: SongsService }, { provide: HymnsService }];
                 },
             } as SocialAuthServiceConfig,
         },
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
     ] })
 export class AppModule {}

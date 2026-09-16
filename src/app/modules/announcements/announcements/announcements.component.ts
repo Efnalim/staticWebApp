@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { MenuItem } from 'src/app/model/menu';
 import { IcalService } from 'src/app/services/calendar.service';
@@ -10,6 +10,7 @@ const title: string = 'Oznámení';
     selector: 'app-announcements',
     templateUrl: './announcements.component.html',
     styleUrls: ['./announcements.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AnnouncementsComponent implements OnInit {

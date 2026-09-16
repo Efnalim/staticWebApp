@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { Song, SongType } from 'src/app/model/song';
 import { HymnsService } from 'src/app/services/hymns.service';
@@ -13,6 +13,7 @@ const title: string = 'Bratrské písně';
     selector: 'app-hymns-songs',
     templateUrl: './hymns.component.html',
     styleUrls: ['./hymns.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HymnsComponent implements OnInit {

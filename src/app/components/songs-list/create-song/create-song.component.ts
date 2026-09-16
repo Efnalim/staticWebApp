@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import {
   MatDialogRef
@@ -11,6 +11,7 @@ import { SongsService } from 'src/app/services/songs.service';
     selector: 'app-create-song',
     templateUrl: './create-song.component.html',
     styleUrls: ['./create-song.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CreateSongComponent {

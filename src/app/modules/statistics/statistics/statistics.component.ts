@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { MenuItem } from 'src/app/model/menu';
 import { worshipSongsPerformers } from 'src/app/model/song';
@@ -11,6 +11,7 @@ const title: string = 'Statistika';
     selector: 'app-statistics',
     templateUrl: './statistics.component.html',
     styleUrls: ['./statistics.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class StatisticsComponent implements OnInit {

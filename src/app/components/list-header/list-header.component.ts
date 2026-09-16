@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MenuItem } from 'src/app/model/menu';
 
@@ -6,6 +6,7 @@ import { MenuItem } from 'src/app/model/menu';
     selector: 'app-list-header',
     templateUrl: './list-header.component.html',
     styleUrls: ['./list-header.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ListHeaderComponent {

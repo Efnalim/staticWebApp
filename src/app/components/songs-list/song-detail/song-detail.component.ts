@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { firstValueFrom, take } from 'rxjs';
 import { sortRecords } from 'src/app/mappers/song.mapper';
@@ -16,6 +16,7 @@ import { HymnsService } from 'src/app/services/hymns.service';
     selector: 'app-song-detail',
     templateUrl: './song-detail.component.html',
     styleUrls: ['./song-detail.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SongDetailComponent {

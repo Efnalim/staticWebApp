@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem } from 'src/app/model/menu';
 import { MenuService } from 'src/app/services/menu.service';
 
@@ -8,6 +8,7 @@ const title: string = "Zpravodaj"
     selector: 'app-newsletter',
     templateUrl: './newsletter.component.html',
     styleUrls: ['./newsletter.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class NewsletterComponent implements OnInit {
