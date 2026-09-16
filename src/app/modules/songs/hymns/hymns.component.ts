@@ -10,9 +10,10 @@ const mode: SongType = SongType.HYMNS;
 const title: string = 'Bratrské písně';
 
 @Component({
-  selector: 'app-hymns-songs',
-  templateUrl: './hymns.component.html',
-  styleUrls: ['./hymns.component.css'],
+    selector: 'app-hymns-songs',
+    templateUrl: './hymns.component.html',
+    styleUrls: ['./hymns.component.css'],
+    standalone: false
 })
 export class HymnsComponent implements OnInit {
   public hymns: Song[] = [];

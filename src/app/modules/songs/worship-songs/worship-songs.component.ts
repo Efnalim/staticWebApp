@@ -10,9 +10,10 @@ import { CreateSongComponent } from 'src/app/components/songs-list/create-song/c
 const title: string = 'Chvály';
 
 @Component({
-  selector: 'app-worship-songs',
-  templateUrl: './worship-songs.component.html',
-  styleUrls: ['./worship-songs.component.css'],
+    selector: 'app-worship-songs',
+    templateUrl: './worship-songs.component.html',
+    styleUrls: ['./worship-songs.component.css'],
+    standalone: false
 })
 export class WorshipSongsComponent implements OnInit {
   public worshipSongs: Song[] = [];

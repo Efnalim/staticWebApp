@@ -13,9 +13,10 @@ import { ConfirmationComponent } from '../../dialog/confirmation/confirmation.co
 import { HymnsService } from 'src/app/services/hymns.service';
 
 @Component({
-  selector: 'app-song-detail',
-  templateUrl: './song-detail.component.html',
-  styleUrls: ['./song-detail.component.css'],
+    selector: 'app-song-detail',
+    templateUrl: './song-detail.component.html',
+    styleUrls: ['./song-detail.component.css'],
+    standalone: false
 })
 export class SongDetailComponent {
   public isEditting: boolean = false;

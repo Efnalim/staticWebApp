@@ -19,9 +19,10 @@ import {
 import { SongDetailComponent } from './song-detail/song-detail.component';
 
 @Component({
-  selector: 'songs-list',
-  templateUrl: './songs-list.component.html',
-  styleUrls: ['./songs-list.component.css'],
+    selector: 'songs-list',
+    templateUrl: './songs-list.component.html',
+    styleUrls: ['./songs-list.component.css'],
+    standalone: false
 })
 export class SongsListComponent implements OnInit, OnChanges {
   @Input() songs: Song[] = [];

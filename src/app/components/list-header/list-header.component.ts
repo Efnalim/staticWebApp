@@ -3,9 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MenuItem } from 'src/app/model/menu';
 
 @Component({
-  selector: 'app-list-header',
-  templateUrl: './list-header.component.html',
-  styleUrls: ['./list-header.component.css'],
+    selector: 'app-list-header',
+    templateUrl: './list-header.component.html',
+    styleUrls: ['./list-header.component.css'],
+    standalone: false
 })
 export class ListHeaderComponent {
   @Output() reloadRequest = new EventEmitter<boolean>();

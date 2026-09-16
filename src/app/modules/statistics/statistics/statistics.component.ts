@@ -8,9 +8,10 @@ import { SongsService } from 'src/app/services/songs.service';
 const title: string = 'Statistika';
 
 @Component({
-  selector: 'app-statistics',
-  templateUrl: './statistics.component.html',
-  styleUrls: ['./statistics.component.css'],
+    selector: 'app-statistics',
+    templateUrl: './statistics.component.html',
+    styleUrls: ['./statistics.component.css'],
+    standalone: false
 })
 export class StatisticsComponent implements OnInit {
   public title: string = title;

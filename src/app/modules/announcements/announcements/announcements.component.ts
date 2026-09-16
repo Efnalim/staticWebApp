@@ -7,9 +7,10 @@ import { MenuService } from 'src/app/services/menu.service';
 const title: string = 'Oznámení';
 
 @Component({
-  selector: 'app-announcements',
-  templateUrl: './announcements.component.html',
-  styleUrls: ['./announcements.component.css'],
+    selector: 'app-announcements',
+    templateUrl: './announcements.component.html',
+    styleUrls: ['./announcements.component.css'],
+    standalone: false
 })
 export class AnnouncementsComponent implements OnInit {
   public title: string = title;

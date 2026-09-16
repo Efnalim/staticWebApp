@@ -8,9 +8,10 @@ import { Song } from 'src/app/model/song';
 import { SongsService } from 'src/app/services/songs.service';
 
 @Component({
-  selector: 'app-create-song',
-  templateUrl: './create-song.component.html',
-  styleUrls: ['./create-song.component.css']
+    selector: 'app-create-song',
+    templateUrl: './create-song.component.html',
+    styleUrls: ['./create-song.component.css'],
+    standalone: false
 })
 export class CreateSongComponent {
 

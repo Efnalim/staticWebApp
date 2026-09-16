@@ -5,9 +5,10 @@ import { MenuService } from 'src/app/services/menu.service';
 const title: string = "Zpravodaj"
 
 @Component({
-  selector: 'app-newsletter',
-  templateUrl: './newsletter.component.html',
-  styleUrls: ['./newsletter.component.css']
+    selector: 'app-newsletter',
+    templateUrl: './newsletter.component.html',
+    styleUrls: ['./newsletter.component.css'],
+    standalone: false
 })
 export class NewsletterComponent implements OnInit {
   public title: string = title;
