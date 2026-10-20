@@ -104,7 +104,7 @@ export class SongsListComponent implements OnInit, OnChanges {
   }
 
   openDetail(song: Song): void {
-    let dialogRef = this.dialog.open(SongDetailComponent, { width: '100vw' });
+    let dialogRef = this.dialog.open(SongDetailComponent);
     dialogRef.componentInstance.setSongToEdit(song);
 
     dialogRef.afterClosed().subscribe((result) => {
